@@ -32,7 +32,7 @@ li a {
   color: black;
 }
 .hero {
-  background-image: url("/images/hero.png");
+  background-image: url("../images/hero.png");
   height: 500px;
   top: 219px;
   left: 103px;
