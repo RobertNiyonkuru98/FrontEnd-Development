@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Our webpage</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/week.css" />
+  </head>
+  <body>
+    <style>
+      p {
+        margin-left: 20px;
+        font-style: italic;
+        font-weight: 20px;
+        font-size: 20px;
+        font-family: cursive;
+        font-style: inherit;
+        color: black;
+      }
+    </style>
+    <p style="font-family: cursive; text-align: center">Good day</p>
+    <h1 id="name">Frontend class</h1>
+    <h2>HTML Input Examples</h2>
+
+    <form>
+      <!-- Text input -->
+      <!-- Allows the user to type plain text -->
+      <label for="username">Username:</label>
+      <input type="text" id="username" placeholder="Enter your username" />
+      <br /><br />
+
+      <!-- Password input -->
+      <!-- Hides the characters as dots for security -->
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter your password" />
+      <br /><br />
+
+      <!-- Number input -->
+      <!-- Lets the user enter only numbers within a range -->
+      <label for="age">Age:</label>
+      <input type="number" id="age" min="1" max="100" />
+      <br /><br />
+      <p id="message"></p>
+      <!-- Date input -->
+      <!-- Opens a calendar picker to select a date -->
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" />
+      <br /><br />
+
+      <!-- Checkbox -->
+      <!-- User can select multiple options -->
+      <p>Select your hobbies:</p>
+      <input type="checkbox" id="reading" name="hobby" value="Reading" />
+      <label for="reading">Reading</label><br />
+      <input type="checkbox" id="sports" name="hobby" value="Sports" />
+      <label for="sports">Sports</label><br />
+      <input type="checkbox" id="coding" name="hobby" value="Coding" />
+      <label for="coding">Coding</label>
+      <br /><br />
+
+      <!-- Radio buttons -->
+      <!-- User can choose only one option from the group -->
+      <p>Choose your favorite color:</p>
+      <input type="radio" id="red" name="color" value="Red" />
+      <label for="red">Red</label><br />
+      <input type="radio" id="blue" name="color" value="Blue" />
+      <label for="blue">Blue</label><br />
+      <input type="radio" id="green" name="color" value="Green" />
+      <label for="green">Green</label>
+      <br /><br />
+
+      <!-- Email input -->
+      <!-- Checks that the user types a valid email format -->
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="example@mail.com" />
+      <br /><br />
+
+      <!-- Submit button -->
+      <!-- Sends the form data -->
+      <input
+        style="
+          height: 10px;
+          width: 50px;
+          border: 3px solid black;
+          font-family: cursive;
+        "
+        type="submit"
+        value="Submit"
+      />
+    </form>
+    <button id="click">Click Me</button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

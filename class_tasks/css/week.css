@@ -1,0 +1,55 @@
+form {
+  background-color: white;
+  position: relative;
+  max-width: 500px;
+  margin: 100px auto;
+  /*left: 400px;
+  right: 400px;*/
+  border: 10px solid black;
+  border-radius: 20px;
+  display: center;
+  flex-direction: column;
+  width: 500px;
+}
+
+h1,
+h2 {
+  font-family: cursive;
+  font-style: italic;
+  font-weight: 20px;
+  color: black;
+  text-align: center;
+}
+
+label {
+  color: black;
+  font-family: cursive;
+  font-weight: 20px solid;
+  font-style: italic;
+  padding-right: 10px;
+  margin-left: 20px;
+}
+
+input {
+  color: black;
+  padding-top: 20px;
+  margin-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 20px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  background: transparent;
+  outline: none;
+}
+
+input::placeholder {
+  font-family: cursive;
+}
+
+/*@media screen and (width >= 80rem) {
+  .container {
+    margin: 1em 2em;
+  }
+}*/

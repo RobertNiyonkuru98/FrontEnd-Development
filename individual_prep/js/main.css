@@ -1,0 +1,142 @@
+/* Removes unwanted styling from the page */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border: none;
+  max-width: 100%;
+}
+
+/* Write your code below this */
+
+.navbar {
+  width: 100%;
+  padding: 26px 60px;
+  padding-top: 26px;
+  display: flex;
+  justify-content: space-between;
+}
+
+li {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0 12px;
+  padding-right: 10px;
+}
+
+li a {
+  text-decoration: none;
+  color: black;
+}
+.hero {
+  background-image: url("/images/hero.png");
+  height: 500px;
+  top: 219px;
+  left: 103px;
+}
+
+h1 {
+  margin-left: 50px;
+  padding-top: 140px;
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+p {
+  margin-left: 50px;
+}
+
+button {
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-left: 50px;
+  padding: 12px 30px;
+  background: #52645e;
+  color: white;
+}
+
+.about {
+  background: whitesmoke;
+  height: 450px;
+}
+
+.about h1 {
+  text-align: center;
+  font-weight: 800;
+  color: #000;
+}
+
+.about p {
+  text-align: center;
+  font-family: cursive;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.journey {
+  background: #618379;
+  padding: 57px 0;
+}
+
+h2 {
+  color: white;
+  font-size: 32px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 57px;
+}
+
+.journey-list {
+  display: flex;
+  width: 80%;
+  margin: 0 10%;
+  justify-content: space-between;
+}
+
+.journey-card {
+  width: 30%;
+  background-color: white;
+  padding: 25px;
+  border-radius: 40px;
+  color: gray;
+}
+
+.journey-image {
+  border-radius: 25px;
+  margin-bottom: 25px;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: black;
+}
+
+.goals {
+  background-color: whitesmoke;
+  height: 450px;
+}
+
+.goals h1 {
+  text-align: center;
+  font-weight: 800;
+  color: black;
+}
+
+.goals p {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: cursive;
+}
+
+footer {
+  background: #333232;
+  text-align: center;
+  color: white;
+  padding: 30px;
+}

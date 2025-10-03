@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Challenge</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0%;
+        margin: 0%;
+      }
+
+      body {
+        background: linear-gradient(
+          to left,
+          rgb(127, 69, 6),
+          rgba(156, 215, 202, 0.14)
+        );
+      }
+
+      header {
+        background-color: rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        height: 100px;
+      }
+
+      header h1 {
+        text-shadow: 5px 6px 10px yellow;
+        font-family: cursive;
+        position: relative;
+        top: 10px;
+      }
+
+      nav {
+        float: right;
+      }
+
+      nav li {
+        display: inline-block;
+        margin: 30px;
+        margin-top: -100px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top: -10px;
+        right: 100px;
+      }
+
+      nav li a {
+        text-decoration: none;
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-weight: bold;
+        font-size: 20px;
+        transition: all 0.3s ease;
+      }
+
+      nav li a:hover {
+        transform: translateY(-3px);
+      }
+
+      .sidebar {
+        height: 300px;
+        width: 200px;
+        height: 85vh;
+        position: absolute;
+        top: 100px;
+        right: 5px;
+        /*left: 20px;
+        padding: ;*/
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar h2 {
+        font-family: cursive;
+        text-align: center;
+      }
+      .sidebar ul li {
+        list-style: none;
+        text-decoration: none;
+        margin: 40px;
+      }
+      .sidebar ul li a {
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+    <link rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <h1>My Webpage</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <aside class="sidebar">
+        <h2>Sidebar</h2>
+        <ul>
+          <li>Link 1</li>
+          <li>Link 2</li>
+          <li>Link 3</li>
+          <li>Link 4</li>
+        </ul>
+      </aside>
+
+      <section class="content">
+        <article>
+          <h2>Article 1</h2>
+          <img src="https://via.placeholder.com/300x150" alt="Sample Image 1" />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+            odio. Praesent libero.
+          </p>
+        </article>
+
+        <article>
+          <h2>Article 2</h2>
+          <img src="https://via.placeholder.com/300x150" alt="Sample Image 2" />
+          <p>
+            Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh
+            elementum imperdiet.
+          </p>
+        </article>
+
+        <article>
+          <h2>Article 3</h2>
+          <img src="https://via.placeholder.com/300x150" alt="Sample Image 3" />
+          <p>
+            Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue
+            semper porta.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 My Website</p>
+    </footer>
+  </body>
+</html>
