@@ -143,3 +143,182 @@ message = 5;
 console.log(message);
 
 */
+
+// Operators
+// Comparison Operators => true/false
+
+/*
+const a = 5;
+const b = 10;
+console.log(a > b);
+console.log(a < b);
+console.log(a == b);
+console.log(a >= b);
+console.log(a <= b);
+console.log(a != b);
+
+*/
+
+/*
+console.log(5 == 5);
+console.log("Hello" == "Hello");
+console.log(5 == "5");
+console.log(5 === "5");
+*/
+
+// Logical Operators
+
+// OR   // NOT
+// AND
+
+// AND && (all operands are true)
+
+/*
+console.log(true && false);
+console.log(true && true);
+console.log(false && true);
+console.log(false && false);
+console.log(true && false && true);
+console.log(true && true && true);
+console.log(false && false && false);
+
+*/
+
+//OR || (at least one operand is true)
+
+/*
+console.log(true || false);
+console.log(true || true);
+console.log(false || true);
+console.log(false || false);
+
+*/
+
+// NOT !
+
+/*
+console.log(!false);
+*/
+
+/* DECISION MAKING IN CODE */
+
+// IF STATEMENTS        // SWITCH STATEMENTS
+// TRUTH/FALSY VALUES   // TERNARY OPERATORS
+
+/*
+const age = 18;
+
+if (age > 18) {
+  console.log("You may enter");
+} else if (age === 18) {
+  console.log("You just turned 18, Welcome");
+} else {
+  console.log("Cannot enter");
+}
+
+*/
+
+// Truthy/falsy values
+
+// while loop
+
+/*
+let i = 0;
+
+while (i < 10) {
+  console.log(i);
+  i++;
+}
+*/
+
+// for loop
+
+/*for([initialization]; [condition]; [final-expression]) {
+
+}*/
+
+/*for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+*/
+
+/* FUNCTIONS */
+
+/*
+// A BLOCK OF CODE => PERFORMS A TASK
+// FUNCTION DECLARATION
+function square(number) {
+  console.log("I'm here");
+  return number * number;
+}
+// FUNCTION CALL
+const result = square(5);
+console.log(result);
+
+*/
+
+// MOre
+// A function declaration
+/*
+function name(params){
+  //statements
+  //have access to "this" keyword
+}
+*/
+
+// A function  expression
+
+/*
+const name = function(params){
+  //statements
+}
+*/
+
+// An arrow function
+
+/*
+const name = (params) => {
+  //statements
+}
+*/
+
+/*
+function sayHi(name) {
+  console.log(`Hi ${name}`);
+}
+
+sayHi("Joe");
+*/
+
+/*
+function add(a, b) {
+  return "RETURNED";
+  return a + b;
+}
+
+const sum = add(2, 2);
+console.log(sum);
+
+function test() {
+  return true;
+  return false;
+}
+
+const bool = test();
+console.log(bool);
+*/
+
+// ARROW FUNCTION
+
+/*
+const square = (number) => {
+  return number * number;
+};
+
+const result = square(5);
+console.log(result);
+
+const add = (a, b) => a + b;
+const answer = add(2, 6);
+console.log(answer);
+*/

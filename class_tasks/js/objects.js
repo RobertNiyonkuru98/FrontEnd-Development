@@ -47,7 +47,7 @@ function displayUsers() {
   members.innerHTML = "";
 
   users.forEach((person, index) => {
-    members.innerHTML += `<div>${index + 1}, ${person.name} : ${
+    members.innerHTML += `<div>${index + 1}. ${person.name} : ${
       person.age
     } years old.</div>`;
   });
@@ -64,14 +64,14 @@ function signUp() {
   <label for="password">Password</label><br><br>
   <input type="password" id="pwd" placeholder="Enter your password"><br><br>
   <button type="button" id="submit" placeholder="Submit">Submit</button><br><br> `;
+
+  document.getElementById("submit").addEventListener("click", showProfile);
 }
 
 function showProfile() {
   let profile = document.getElementById("username").value;
-  let person = [{ name: `${profile}` }];
   let logUser = document.getElementById("logUser");
-  logUser.innerHTML = "";
-  logUser.innerHTML += `<p> ${person.name}</p>`;
+  logUser.innerHTML += `<p> ${profile}</p>`;
 }
 
 document.getElementById("output").addEventListener("click", changeTitle);
