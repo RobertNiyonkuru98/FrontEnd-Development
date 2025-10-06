@@ -1,0 +1,36 @@
+# This file contains sample HTTP requests for testing the API endpoints.
+# You can use the REST Client extension in VS Code to run these requests.
+
+# Get posts for the authenticated user (requires a valid access token)
+GET http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsImlhdCI6MTc1OTc4MDU3MiwiZXhwIjoxNzU5NzgwNjMyfQ.jzoRlw5DscDHA_2V_VH3BsoWYVMSKk44-dMcW_c4ypQ
+
+###
+
+# Logout by deleting the refresh token (requires the refresh token in the body)
+DELETE http://localhost:4000/logout
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsImlhdCI6MTc1OTc4Mzk4OX0.2P88G0uCK2SSkc0CcDXHITBYii8kGWY-zN0bA60If2E"
+}
+
+###
+
+# Get a new access token using a refresh token
+POST http://localhost:4000/token
+content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiS3lsZSIsImlhdCI6MTc1OTc4Mzk4OX0.2P88G0uCK2SSkc0CcDXHITBYii8kGWY-zN0bA60If2E"
+}
+
+###
+
+# Login to receive access and refresh tokens (provide username)
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "username" : "Kyle"
+}
