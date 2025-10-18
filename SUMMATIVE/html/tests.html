@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regex Validation Tests - Finance Tracker</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 20px;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        color: white;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+      }
+
+      .test-section {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .test-section h2 {
+        color: #2563eb;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 10px;
+      }
+
+      .regex-pattern {
+        background: #f1f5f9;
+        padding: 12px;
+        border-radius: 6px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        margin-bottom: 15px;
+        word-break: break-all;
+      }
+
+      .test-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .test-case {
+        background: #f8fafc;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #cbd5e1;
+      }
+
+      .test-input {
+        font-family: "Courier New", monospace;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 8px;
+      }
+
+      .test-result {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .test-result.pass {
+        color: #10b981;
+      }
+
+      .test-result.pass::before {
+        content: "✓";
+        background: #10b981;
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+
+      .test-result.fail {
+        color: #ef4444;
+      }
+
+      .test-result.fail::before {
+        content: "✗";
+        background: #ef4444;
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+
+      .error-message {
+        font-size: 12px;
+        color: #64748b;
+        margin-top: 5px;
+        font-style: italic;
+      }
+
+      .interactive-test {
+        background: #fff7ed;
+        border: 2px solid #fb923c;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+
+      .interactive-test h3 {
+        color: #ea580c;
+        margin-bottom: 15px;
+      }
+
+      .test-input-group {
+        margin-bottom: 15px;
+      }
+
+      .test-input-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #1e293b;
+      }
+
+      .test-input-group input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 16px;
+        font-family: inherit;
+      }
+
+      .test-input-group input.valid {
+        border-color: #10b981;
+        background: #d1fae5;
+      }
+
+      .test-input-group input.invalid {
+        border-color: #ef4444;
+        background: #fee2e2;
+      }
+
+      .live-result {
+        padding: 12px;
+        border-radius: 6px;
+        margin-top: 10px;
+        font-weight: 600;
+      }
+
+      .live-result.valid {
+        background: #d1fae5;
+        color: #065f46;
+      }
+
+      .live-result.invalid {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .summary {
+        background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .summary h2 {
+        color: white;
+        border: none;
+        margin-bottom: 15px;
+      }
+
+      .stats {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        font-size: 1.2rem;
+      }
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+      @media (max-width: 768px) {
+        .test-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+
+      code {
+        background: #e0e7ff;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🧪 Regex Validation Tests</h1>
+
+      <!-- Test 1: Description -->
+      <div class="test-section">
+        <h2>1. Description Validation</h2>
+        <div class="regex-pattern">
+          Pattern: <code>/^\S+(?:\s\S+)*$/</code><br />
+          Rules: No leading/trailing spaces, no consecutive spaces, no duplicate
+          words
+        </div>
+        <div class="test-grid" id="description-tests"></div>
+
+        <div class="interactive-test">
+          <h3>🎮 Try It Live!</h3>
+          <div class="test-input-group">
+            <label for="desc-input">Enter a description:</label>
+            <input
+              type="text"
+              id="desc-input"
+              placeholder="e.g., Lunch at cafeteria"
+            />
+            <div
+              id="desc-result"
+              class="live-result"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Test 2: Amount -->
+      <div class="test-section">
+        <h2>2. Amount Validation</h2>
+        <div class="regex-pattern">
+          Pattern: <code>/^(0|[1-9]\d*)(\.\d{1,2})?$/</code><br />
+          Rules: Positive number, no leading zeros, max 2 decimals
+        </div>
+        <div class="test-grid" id="amount-tests"></div>
+
+        <div class="interactive-test">
+          <h3>🎮 Try It Live!</h3>
+          <div class="test-input-group">
+            <label for="amount-input">Enter an amount:</label>
+            <input type="text" id="amount-input" placeholder="e.g., 12.50" />
+            <div
+              id="amount-result"
+              class="live-result"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Test 3: Date -->
+      <div class="test-section">
+        <h2>3. Date Validation</h2>
+        <div class="regex-pattern">
+          Pattern: <code>/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/</code
+          ><br />
+          Rules: YYYY-MM-DD format, valid calendar date, not in future
+        </div>
+        <div class="test-grid" id="date-tests"></div>
+
+        <div class="interactive-test">
+          <h3>🎮 Try It Live!</h3>
+          <div class="test-input-group">
+            <label for="date-input">Enter a date:</label>
+            <input type="text" id="date-input" placeholder="e.g., 2025-10-10" />
+            <div
+              id="date-result"
+              class="live-result"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Test 4: Category -->
+      <div class="test-section">
+        <h2>4. Category Validation</h2>
+        <div class="regex-pattern">
+          Pattern: <code>/^[A-Za-z]+(?:[ -][A-Za-z]+)*$/</code><br />
+          Rules: Letters, spaces, hyphens only; must start/end with letter
+        </div>
+        <div class="test-grid" id="category-tests"></div>
+
+        <div class="interactive-test">
+          <h3>🎮 Try It Live!</h3>
+          <div class="test-input-group">
+            <label for="category-input">Enter a category:</label>
+            <input type="text" id="category-input" placeholder="e.g., Food" />
+            <div
+              id="category-result"
+              class="live-result"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Test 5: Advanced - Duplicate Words -->
+      <div class="test-section">
+        <h2>5. Advanced: Duplicate Words (Back-reference)</h2>
+        <div class="regex-pattern">
+          Pattern: <code>/\b(\w+)\s+\1\b/i</code><br />
+          Purpose: Detect repeated consecutive words
+        </div>
+        <div class="test-grid" id="duplicate-tests"></div>
+      </div>
+
+      <!-- Test 6: Advanced - Cents Detection -->
+      <div class="test-section">
+        <h2>6. Advanced: Cents Present (Lookahead)</h2>
+        <div class="regex-pattern">
+          Pattern: <code>/\.\d{2}\b/</code><br />
+          Purpose: Find amounts with exactly 2 decimal places
+        </div>
+        <div class="test-grid" id="cents-tests"></div>
+      </div>
+
+      <!-- Test 7: Advanced - Beverage Keywords -->
+      <div class="test-section">
+        <h2>7. Advanced: Beverage Detection</h2>
+        <div class="regex-pattern">
+          Pattern: <code>/(coffee|tea|juice|soda|water)/i</code><br />
+          Purpose: Filter beverage-related transactions
+        </div>
+        <div class="test-grid" id="beverage-tests"></div>
+      </div>
+
+      <!-- Summary -->
+      <div class="summary">
+        <h2>Test Summary</h2>
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-value" id="total-tests">0</div>
+            <div>Total Tests</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="passed-tests">0</div>
+            <div>Passed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="failed-tests">0</div>
+            <div>Failed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import {
+        validateDescription,
+        validateAmount,
+        validateDate,
+        validateCategory,
+        hasDuplicateWords,
+        hasCents,
+        isBeverage,
+      } from "./scripts/validators.js";
+
+      // Test Cases
+      const tests = {
+        description: [
+          { input: "Lunch at cafeteria", expected: true },
+          { input: "Coffee with friends", expected: true },
+          { input: " Leading space", expected: false },
+          { input: "Trailing space ", expected: false },
+          { input: "Double  space", expected: false },
+          { input: "the the mistake", expected: false },
+          { input: "AB", expected: false },
+        ],
+        amount: [
+          { input: "12.50", expected: true },
+          { input: "0.99", expected: true },
+          { input: "1000", expected: true },
+          { input: "0", expected: false },
+          { input: "01", expected: false },
+          { input: "-5", expected: false },
+          { input: "100.123", expected: false },
+        ],
+        date: [
+          { input: "2025-10-10", expected: true },
+          { input: "2025-01-31", expected: true },
+          { input: "2025-12-25", expected: true },
+          { input: "2025-13-01", expected: false },
+          { input: "2025-02-30", expected: false },
+          { input: "10-10-2025", expected: false },
+        ],
+        category: [
+          { input: "Food", expected: true },
+          { input: "Mobile Money", expected: true },
+          { input: "Books-Supplies", expected: true },
+          { input: "123Food", expected: false },
+          { input: "Food!", expected: false },
+          { input: "-Food", expected: false },
+        ],
+        duplicate: [
+          { input: "the the mistake", expected: true },
+          { input: "buy buy coffee", expected: true },
+          { input: "normal text here", expected: false },
+        ],
+        cents: [
+          { input: "12.50", expected: true },
+          { input: "RWF 100.99", expected: true },
+          { input: "1000", expected: false },
+          { input: "10.5", expected: false },
+        ],
+        beverage: [
+          { input: "Morning coffee", expected: true },
+          { input: "Green tea latte", expected: true },
+          { input: "Lunch at cafeteria", expected: false },
+        ],
+      };
+
+      // Run tests and display results
+      function runTests() {
+        let totalTests = 0;
+        let passed = 0;
+        let failed = 0;
+
+        // Description tests
+        tests.description.forEach((test) => {
+          const result = validateDescription(test.input);
+          displayTest(
+            "description-tests",
+            test.input,
+            result.valid,
+            test.expected,
+            result.error
+          );
+          totalTests++;
+          result.valid === test.expected ? passed++ : failed++;
+        });
+
+        // Date tests
+        tests.date.forEach((test) => {
+          const result = validateDate(test.input);
+          displayTest(
+            "date-tests",
+            test.input,
+            result.valid,
+            test.expected,
+            result.error
+          );
+          totalTests++;
+          result.valid === test.expected ? passed++ : failed++;
+        });
+
+        // Category tests
+        tests.category.forEach((test) => {
+          const result = validateCategory(test.input);
+          displayTest(
+            "category-tests",
+            test.input,
+            result.valid,
+            test.expected,
+            result.error
+          );
+          totalTests++;
+          result.valid === test.expected ? passed++ : failed++;
+        });
+
+        // Duplicate word tests
+        tests.duplicate.forEach((test) => {
+          const result = hasDuplicateWords(test.input);
+          displayTest("duplicate-tests", test.input, result, test.expected);
+          totalTests++;
+          result === test.expected ? passed++ : failed++;
+        });
+
+        // Cents tests
+        tests.cents.forEach((test) => {
+          const result = hasCents(test.input);
+          displayTest("cents-tests", test.input, result, test.expected);
+          totalTests++;
+          result === test.expected ? passed++ : failed++;
+        });
+
+        // Beverage tests
+        tests.beverage.forEach((test) => {
+          const result = isBeverage(test.input);
+          displayTest("beverage-tests", test.input, result, test.expected);
+          totalTests++;
+          result === test.expected ? passed++ : failed++;
+        });
+
+        // Update summary
+        document.getElementById("total-tests").textContent = totalTests;
+        document.getElementById("passed-tests").textContent = passed;
+        document.getElementById("failed-tests").textContent = failed;
+      }
+
+      function displayTest(
+        containerId,
+        input,
+        actual,
+        expected,
+        errorMsg = ""
+      ) {
+        const container = document.getElementById(containerId);
+        const testCase = document.createElement("div");
+        testCase.className = "test-case";
+
+        const passed = actual === expected;
+
+        testCase.innerHTML = `
+                <div class="test-input">"${input}"</div>
+                <div class="test-result ${passed ? "pass" : "fail"}">
+                    Expected: ${expected ? "Valid" : "Invalid"} | Got: ${
+          actual ? "Valid" : "Invalid"
+        }
+                </div>
+                ${
+                  errorMsg ? `<div class="error-message">${errorMsg}</div>` : ""
+                }
+            `;
+
+        container.appendChild(testCase);
+      }
+
+      // Interactive live testing
+      function setupLiveTest(inputId, resultId, validatorFunc) {
+        const input = document.getElementById(inputId);
+        const result = document.getElementById(resultId);
+
+        input.addEventListener("input", () => {
+          const value = input.value;
+          if (!value) {
+            result.style.display = "none";
+            input.className = "";
+            return;
+          }
+
+          const validation = validatorFunc(value);
+          const isValid =
+            validation.valid !== undefined ? validation.valid : validation;
+
+          result.style.display = "block";
+          result.className = `live-result ${isValid ? "valid" : "invalid"}`;
+          input.className = isValid ? "valid" : "invalid";
+
+          if (isValid) {
+            result.textContent = "✓ Valid!";
+          } else {
+            result.textContent = `✗ ${validation.error || "Invalid"}`;
+          }
+        });
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        runTests();
+
+        // Setup interactive tests
+        setupLiveTest("desc-input", "desc-result", validateDescription);
+        setupLiveTest("amount-input", "amount-result", validateAmount);
+        setupLiveTest("date-input", "date-result", validateDate);
+        setupLiveTest("category-input", "category-result", validateCategory);
+      });
+    </script>
+  </body>
+</html>
+
+// Amount tests tests.amount.forEach(test => { const result =
+validateAmount(test.input); displayTest('amount-tests', test.input,
+result.valid, test.expected, result.error);

@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Planner - Complete Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .wireframe-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        /* Tab Controls */
+        .device-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            background: white;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab {
+            padding: 12px 24px;
+            background: #faf5ff;
+            border: 2px solid #e9d5ff;
+            cursor: pointer;
+            font-size: 16px;
+            color: #6b21a8;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .tab:hover {
+            background: #f3e8ff;
+            border-color: #7c3aed;
+        }
+        .tab.active {
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            color: white;
+            border-color: #7c3aed;
+        }
+
+        /* Screen Container */
+        .all-screens {
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .view-container {
+            display: none;
+        }
+        .view-container.active {
+            display: block;
+        }
+
+        .screens-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        /* Mobile: 1 column */
+        .mobile-layout .screens-grid {
+            grid-template-columns: 1fr;
+            max-width: 375px;
+            margin: 0 auto;
+        }
+
+        /* Tablet: 2 columns */
+        .tablet-layout .screens-grid {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Desktop: 3 columns */
+        .desktop-layout .screens-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .screen {
+            background: #faf5ff;
+            border: 2px solid #e9d5ff;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .screen-header {
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .screen-body {
+            padding: 20px;
+        }
+
+        /* Wireframe Elements */
+        .wire-nav {
+            background: #1e293b;
+            color: white;
+            padding: 15px;
+            margin: -20px -20px 20px -20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .wire-box {
+            border: 2px dashed #e9d5ff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: white;
+        }
+        .wire-text {
+            height: 10px;
+            background: #e9d5ff;
+            border-radius: 5px;
+            margin: 8px 0;
+        }
+        .wire-text.short { width: 40%; }
+        .wire-text.medium { width: 70%; }
+        .wire-text.long { width: 100%; }
+
+        .wire-button {
+            display: inline-block;
+            background: #7c3aed;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            margin: 5px 5px 5px 0;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .wire-button.secondary {
+            background: #64748b;
+        }
+        .wire-button.danger {
+            background: #ef4444;
+        }
+        .wire-input {
+            border: 2px solid #e9d5ff;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 8px 0;
+            background: white;
+            font-size: 13px;
+            color: #64748b;
+        }
+        .wire-card {
+            border: 2px solid #e9d5ff;
+            border-left: 4px solid #7c3aed;
+            padding: 15px;
+            border-radius: 8px;
+            background: white;
+            margin: 10px 0;
+        }
+        .wire-stat {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            border-radius: 8px;
+            color: white;
+            margin: 10px 0;
+        }
+        .wire-stat strong {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+        .wire-stat .value {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .wire-timeline {
+            height: 180px;
+            background: white;
+            border: 2px solid #e9d5ff;
+            border-radius: 8px;
+            margin: 15px 0;
+            padding: 15px;
+            position: relative;
+        }
+        .timeline-item {
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            height: 30px;
+            border-radius: 6px;
+            margin: 8px 0;
+            padding: 8px 12px;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .wire-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .wire-table th, .wire-table td {
+            border: 1px solid #e9d5ff;
+            padding: 10px;
+            text-align: left;
+        }
+        .wire-table th {
+            background: #faf5ff;
+            font-weight: 600;
+            font-size: 11px;
+        }
+        .annotation {
+            color: #7c3aed;
+            font-size: 11px;
+            font-weight: 700;
+            margin: 15px 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .hero {
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px 0 20px 0;
+        }
+        .hero h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .feature-box {
+            background: white;
+            border: 2px solid #e9d5ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .progress-bar {
+            background: #e9d5ff;
+            height: 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
+            height: 100%;
+            border-radius: 12px;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin: 15px 0 5px 0;
+            font-size: 13px;
+            color: #1e293b;
+        }
+        .priority-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .priority-high {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .priority-medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .priority-low {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        <h1>📅 Campus Life Planner - All Pages Wireframes</h1>
+        <p class="subtitle">Complete visual guide with navigation • Click tabs to see responsive layouts</p>
+
+        <div class="device-tabs">
+            <button class="tab active" onclick="switchView('mobile')">📱 Mobile (360px)</button>
+            <button class="tab" onclick="switchView('tablet')">📱 Tablet (768px)</button>
+            <button class="tab" onclick="switchView('desktop')">💻 Desktop (1024px+)</button>
+        </div>
+
+        <div class="all-screens">
+            <!-- MOBILE VIEW -->
+            <div id="mobile-view" class="view-container mobile-layout active">
+                <div class="screens-grid">
+
+                    <!-- 1. Landing Page -->
+                    <div class="screen">
+                        <div class="screen-header">🏠 Landing Page</div>
+                        <div class="screen-body">
+                            <div class="hero">
+                                <h2>CampusPlanner</h2>
+                                <p>Organize your academic life</p>
+                            </div>
+                            <div class="annotation">Quick Overview</div>
+                            <div class="feature-grid">
+                                <div class="feature-box">
+                                    <strong>24</strong><br>
+                                    <span style="font-size: 11px; color: #64748b;">Active Tasks</span>
+                                </div>
+                                <div class="feature-box">
+                                    <strong>8</strong><br>
+                                    <span style="font-size: 11px; color: #64748b;">Due This Week</span>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 20px;">
+                                <div class="wire-button">📊 View Dashboard</div>
+                                <div class="wire-button">➕ Add Task</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Navigation Menu -->
+                    <div class="screen">
+                        <div class="screen-header">🧭 Navigation (Mobile Menu)</div>
+                        <div class="screen-body">
+                            <div class="annotation">Hamburger Menu Expanded</div>
+                            <div class="wire-card">
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e9d5ff;">🏠 Home</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e9d5ff;">📊 Dashboard</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e9d5ff;">📋 All Tasks</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e9d5ff;">➕ Add New</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e9d5ff;">✅ Completed</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e9d5ff;">⏰ Upcoming</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e9d5ff;">📈 Timeline</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e9d5ff;">⚙️ Settings</div>
+                                <div style="font-weight: 600; padding: 10px;">📄 About</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Dashboard -->
+                    <div class="screen">
+                        <div class="screen-header">📊 Dashboard</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>CampusPlanner</span>
+                                <span>👤</span>
+                            </div>
+                            <div class="annotation">Key Metrics</div>
+                            <div class="wire-stat">
+                                <strong>TOTAL TASKS</strong>
+                                <div class="value">24 items</div>
+                            </div>
+                            <div class="wire-stat">
+                                <strong>DUE THIS WEEK</strong>
+                                <div class="value">8 upcoming</div>
+                            </div>
+                            <div class="wire-stat">
+                                <strong>TOTAL HOURS</strong>
+                                <div class="value">42.5 hours</div>
+                            </div>
+
+                            <div class="annotation">Time Cap Warning</div>
+                            <div class="wire-box">
+                                <div style="font-size: 12px; color: #64748b; margin-bottom: 5px;">Weekly Target: 40 hours</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%;"></div>
+                                </div>
+                                <div style="font-size: 12px; color: #ea580c; font-weight: 600; margin-top: 5px;">⚠️ 5.5 hours over target</div>
+                            </div>
+
+                            <div class="annotation">Upcoming Tasks Timeline</div>
+                            <div class="wire-timeline">
+                                <div class="timeline-item" style="width: 60%;">CS Assignment - 2hrs</div>
+                                <div class="timeline-item" style="width: 40%; background: #f97316;">Study Group - 1.5hrs</div>
+                                <div class="timeline-item" style="width: 80%; background: #64748b;">Project Work - 3hrs</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. All Tasks -->
+                    <div class="screen">
+                        <div class="screen-header">📋 All Tasks</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>All Tasks</span>
+                                <span>🔍</span>
+                            </div>
+
+                            <div class="annotation">Search & Filter</div>
+                            <div class="wire-input">🔍 Regex search (e.g., @tag:Academic)</div>
+                            <div style="display: flex; gap: 8px;">
+                                <div class="wire-button">Sort by Date ⬇️</div>
+                                <div class="wire-button secondary">Filter</div>
+                            </div>
+
+                            <div class="annotation">Task Cards (24 total)</div>
+                            <div class="wire-card">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <strong style="font-size: 14px;">Submit CS Assignment</strong>
+                                    <span class="priority-badge priority-high">HIGH</span>
+                                </div>
+                                <div style="color: #64748b; font-size: 12px; margin-bottom: 8px;">
+                                    📚 Academic • Due: Oct 15, 2025 • 2 hours
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <span class="status-badge">In Progress</span>
+                                </div>
+                                <div>
+                                    <span class="wire-button" style="padding: 6px 12px;">✏️ Edit</span>
+                                    <span class="wire-button" style="padding: 6px 12px; background: #10b981;">✓ Complete</span>
+                                    <span class="wire-button danger" style="padding: 6px 12px;">🗑️ Delete</span>
+                                </div>
+                            </div>
+
+                            <div class="wire-card">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <strong style="font-size: 14px;">Group Study Session</strong>
+                                    <span class="priority-badge priority-medium">MEDIUM</span>
+                                </div>
+                                <div style="color: #64748b; font-size: 12px; margin-bottom: 8px;">
+                                    👥 Social • Due: Oct 12, 2025 • 1.5 hours
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <span class="status-badge">Todo</span>
+                                </div>
+                                <div>
+                                    <span class="wire-button" style="padding: 6px 12px;">✏️ Edit</span>
+                                    <span class="wire-button" style="padding: 6px 12px; background: #10b981;">✓ Complete</span>
+                                    <span class="wire-button danger" style="padding: 6px 12px;">🗑️ Delete</span>
+                                </div>
+                            </div>
+
+                            <div class="wire-card">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <strong style="font-size: 14px;">Gym Workout</strong>
+                                    <span class="priority-badge priority-low">LOW</span>
+                                </div>
+                                <div style="color: #64748b; font-size: 12px; margin-bottom: 8px;">
+                                    💪 Health • Due: Oct 11, 2025 • 1 hour
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <span class="status-badge">Todo</span>
+                                </div>
+                                <div>
+                                    <span class="wire-button" style="padding: 6px 12px;">✏️ Edit</span>
+                                    <span class="wire-button" style="padding: 6px 12px; background: #10b981;">✓ Complete</span>
+                                    <span class="wire-button danger" style="padding: 6px 12px;">🗑️ Delete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Add Task Form -->
+                    <div class="screen">
+                        <div class="screen-header">➕ Add Task</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>← Back</span>
+                                <span>New Task</span>
+                                <span></span>
+                            </div>
+
+                            <div class="annotation">Form Fields</div>
+
+                            <label>Task Title *</label>
+                            <div class="wire-input">e.g., Submit CS Assignment</div>
+                            <div style="color: #ef4444; font-size: 11px; margin-top: -5px;">⚠️ No leading/trailing spaces allowed</div>
+
+                            <label>Due Date *</label>
+                            <div class="wire-input">2025-10-15</div>
+                            <div style="color: #64748b; font-size: 11px; margin-top: -5px;">Format: YYYY-MM-DD</div>
+
+                            <label>Duration (minutes) *</label>
+                            <div class="wire-input">120</div>
+                            <div style="color: #64748b; font-size: 11px; margin-top: -5px;">Will convert to 2 hours</div>
+
+                            <label>Tag *</label>
+                            <div class="wire-input">
+                                <select style="width: 100%; border: none; background: transparent; font-size: 13px;">
+                                    <option>Academic</option>
+                                    <option>Social</option>
+                                    <option>Personal</option>
+                                    <option>Extracurricular</option>
+                                    <option>Health</option>
+                                </select>
+                            </div>
+
+                            <label>Priority *</label>
+                            <div class="wire-input">
+                                <select style="width: 100%; border: none; background: transparent; font-size: 13px;">
+                                    <option>High</option>
+                                    <option>Medium</option>
+                                    <option>Low</option>
+                                </select>
+                            </div>
+
+                            <label>Location (Optional)</label>
+                            <div class="wire-input">e.g., Library, Room 204</div>
+
+                            <div style="margin-top: 25px;">
+                                <div class="wire-button">💾 Save Task</div>
+                                <div class="wire-button secondary">❌ Cancel</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Completed Tasks -->
+                    <div class="screen">
+                        <div class="screen-header">✅ Completed Tasks</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>Completed</span>
+                                <span>🔍</span>
+                            </div>
+
+                            <div class="annotation">Achievement Stats</div>
+                            <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 12px; opacity: 0.9;">TASKS COMPLETED</div>
+                                <div style="font-size: 32px; font-weight: 700;">18 / 24</div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-top: 5px;">75% completion rate</div>
+                            </div>
+
+                            <div class="annotation">Completed This Week (6)</div>
+                            <div class="wire-card" style="opacity: 0.7;">
+                                <div style="text-decoration: line-through;">
+                                    <strong>Math Homework</strong>
+                                    <p style="font-size: 12px; color: #64748b; margin: 5px 0;">Academic • Completed Oct 8</p>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <span class="wire-button secondary" style="padding: 6px 12px;">↩️ Undo</span>
+                                    <span class="wire-button danger" style="padding: 6px 12px;">🗑️ Delete</span>
+                                </div>
+                            </div>
+
+                            <div class="wire-card" style="opacity: 0.7;">
+                                <div style="text-decoration: line-through;">
+                                    <strong>Physics Lab Report</strong>
+                                    <p style="font-size: 12px; color: #64748b; margin: 5px 0;">Academic • Completed Oct 7</p>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <span class="wire-button secondary" style="padding: 6px 12px;">↩️ Undo</span>
+                                    <span class="wire-button danger" style="padding: 6px 12px;">🗑️ Delete</span>
+                                </div>
+                            </div>
+
+                            <div class="wire-card" style="opacity: 0.7;">
+                                <div style="text-decoration: line-through;">
+                                    <strong>Team Meeting</strong>
+                                    <p style="font-size: 12px; color: #64748b; margin: 5px 0;">Social • Completed Oct 6</p>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <span class="wire-button secondary" style="padding: 6px 12px;">↩️ Undo</span>
+                                    <span class="wire-button danger" style="padding: 6px 12px;">🗑️ Delete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Upcoming View -->
+                    <div class="screen">
+                        <div class="screen-header">⏰ Upcoming Tasks</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>Upcoming</span>
+                                <span>📅</span>
+                            </div>
+
+                            <div class="annotation">Filter by Time</div>
+                            <div style="display: flex; gap: 8px; margin-bottom: 15px;">
+                                <div class="wire-button">Today</div>
+                                <div class="wire-button secondary">This Week</div>
+                                <div class="wire-button secondary">This Month</div>
+                            </div>
+
+                            <div class="annotation">Due Today (3)</div>
+                            <div class="wire-card">
+                                <strong>Review Lecture Notes</strong>
+                                <p style="color: #64748b; font-size: 12px; margin: 5px 0;">📚 Academic • 14:00 • 1 hour</p>
+                                <span class="priority-badge priority-high">HIGH</span>
+                            </div>
+
+                            <div class="annotation">Due Tomorrow (2)</div>
+                            <div class="wire-card">
+                                <strong>Grocery Shopping</strong>
+                                <p style="color: #64748b; font-size: 12px; margin: 5px 0;">📦 Personal • 10:00 • 0.5 hours</p>
+                                <span class="priority-badge priority-low">LOW</span>
+                            </div>
+
+                            <div class="annotation">This Week (3)</div>
+                            <div class="wire-card">
+                                <strong>Submit CS Assignment</strong>
+                                <p style="color: #64748b; font-size: 12px; margin: 5px 0;">📚 Academic • Oct 15 • 2 hours</p>
+                                <span class="priority-badge priority-high">HIGH</span>
+                            </div>
+
+                            <div class="wire-card">
+                                <strong>Group Study Session</strong>
+                                <p style="color: #64748b; font-size: 12px; margin: 5px 0;">👥 Social • Oct 12 • 1.5 hours</p>
+                                <span class="priority-badge priority-medium">MEDIUM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Timeline View -->
+                    <div class="screen">
+                        <div class="screen-header">📈 Timeline</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>Timeline</span>
+                                <span>📊</span>
+                            </div>
+
+                            <div class="annotation">Weekly Overview</div>
+                            <div class="wire-timeline" style="height: 220px;">
+                                <div style="font-size: 10px; color: #64748b; margin-bottom: 10px;">Week of Oct 9-15, 2025</div>
+                                <div class="timeline-item" style="width: 70%;">Mon: 3 tasks • 4.5hrs</div>
+                                <div class="timeline-item" style="width: 50%; background: #f97316;">Tue: 2 tasks • 3hrs</div>
+                                <div class="timeline-item" style="width: 90%; background: #ef4444;">Wed: 4 tasks • 6hrs</div>
+                                <div class="timeline-item" style="width: 40%; background: #64748b;">Thu: 1 task • 2hrs</div>
+                                <div class="timeline-item" style="width: 60%;">Fri: 2 tasks • 3.5hrs</div>
+                            </div>
+
+                            <div class="annotation">Productivity Stats</div>
+                            <div class="wire-box">
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e9d5ff;">
+                                    <span>This Week</span>
+                                    <strong>19 hours</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e9d5ff;">
+                                    <span>Last Week</span>
+                                    <strong>15.5 hours</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0;">
+                                    <span>Average/Week</span>
+                                    <strong>17.2 hours</strong>
+                                </div>
+                            </div>
+
+                            <div class="annotation">Time by Tag</div>
+                            <div class="wire-box">
+                                <div style="margin: 10px 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="font-size: 12px;">📚 Academic</span>
+                                        <span style="font-size: 12px; font-weight: 600;">65%</span>
+                                    </div>
+                                    <div class="progress-bar" style="height: 16px;">
+                                        <div class="progress-fill" style="width: 65%; background: #7c3aed;"></div>
+                                    </div>
+                                </div>
+                                <div style="margin: 10px 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="font-size: 12px;">👥 Social</span>
+                                        <span style="font-size: 12px; font-weight: 600;">20%</span>
+                                    </div>
+                                    <div class="progress-bar" style="height: 16px;">
+                                        <div class="progress-fill" style="width: 20%; background: #f97316;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Settings -->
+                    <div class="screen">
+                        <div class="screen-header">⚙️ Settings</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>Settings</span>
+                                <span></span>
+                            </div>
+
+                            <div class="annotation">Time Settings</div>
+                            <div class="wire-box">
+                                <label>Default Duration Unit</label>
+                                <div class="wire-input">
+                                    <select style="width: 100%; border: none; background: transparent;">
+                                        <option>Minutes</option>
+                                        <option>Hours</option>
+                                    </select>
+                                </div>
+
+                                <label>Time Conversion</label>
+                                <div style="display: flex; gap: 10px; align-items: center; margin: 10px 0;">
+                                    <div class="wire-input" style="flex: 1;">120</div>
+                                    <span style="font-size: 13px;">minutes =</span>
+                                    <div class="wire-input" style="flex: 1;">2.0</div>
+                                    <span style="font-size: 13px;">hours</span>
+                                </div>
+                            </div>
+
+                            <div class="annotation">Weekly Target</div>
+                            <div class="wire-box">
+                                <label>Weekly Hour Cap</label>
+                                <div class="wire-input">40</div>
+                                <div style="color: #64748b; font-size: 11px; margin-top: 5px;">Set to 0 to disable tracking</div>
+                            </div>
+
+                            <div class="annotation">Tags Management</div>
+                            <div class="wire-box">
+                                <div style="font-size: 12px; color: #64748b; margin-bottom: 10px;">Default Tags:</div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                    <span style="background: #f3e8ff; padding: 6px 12px; border-radius: 12px; font-size: 11px;">👥 Social</span>
+                                    <span style="background: #f3e8ff; padding: 6px 12px; border-radius: 12px; font-size: 11px;">📦 Personal</span>
+                                    <span style="background: #f3e8ff; padding: 6px 12px; border-radius: 12px; font-size: 11px;">🎭 Extracurricular</span>
+                                    <span style="background: #f3e8ff; padding: 6px 12px; border-radius: 12px; font-size: 11px;">💪 Health</span>
+                                </div>
+                                <div class="wire-button" style="margin-top: 10px;">➕ Add Custom Tag</div>
+                            </div>
+
+                            <div class="annotation">Data Management</div>
+                            <div class="wire-box">
+                                <div class="wire-button">📤 Export Data (JSON)</div>
+                                <div class="wire-button secondary">📥 Import Data (JSON)</div>
+                                <div class="wire-button danger">🗑️ Clear All Data</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. About Page -->
+                    <div class="screen">
+                        <div class="screen-header">📄 About</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>About</span>
+                                <span></span>
+                            </div>
+
+                            <div class="hero">
+                                <h2>Campus Life Planner</h2>
+                                <p>Organize your academic journey</p>
+                            </div>
+
+                            <div class="annotation">Features</div>
+                            <div class="wire-box">
+                                <div style="padding: 10px 0; border-bottom: 1px solid #e9d5ff;">
+                                    ✅ Unlimited task tracking
+                                </div>
+                                <div style="padding: 10px 0; border-bottom: 1px solid #e9d5ff;">
+                                    ✅ Priority & status management
+                                </div>
+                                <div style="padding: 10px 0; border-bottom: 1px solid #e9d5ff;">
+                                    ✅ Time tracking & conversion
+                                </div>
+                                <div style="padding: 10px 0; border-bottom: 1px solid #e9d5ff;">
+                                    ✅ Advanced regex search
+                                </div>
+                                <div style="padding: 10px 0;">
+                                    ✅ Export/Import JSON data
+                                </div>
+                            </div>
+
+                            <div class="annotation">Developer Info</div>
+                            <div class="wire-box">
+                                <div style="font-size: 13px; margin: 8px 0;">
+                                    <strong>Created by:</strong> Your Name
+                                </div>
+                                <div style="font-size: 13px; margin: 8px 0;">
+                                    <strong>Email:</strong> your.email@example.com
+                                </div>
+                                <div style="margin-top: 15px;">
+                                    <div class="wire-button">🔗 GitHub Repository</div>
+                                </div>
+                            </div>
+
+                            <div class="annotation">Technologies Used</div>
+                            <div class="wire-box">
+                                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                    <span style="background: #faf5ff; padding: 6px 12px; border-radius: 12px; font-size: 11px;">HTML5</span>
+                                    <span style="background: #faf5ff; padding: 6px 12px; border-radius: 12px; font-size: 11px;">CSS3</span>
+                                    <span style="background: #faf5ff; padding: 6px 12px; border-radius: 12px; font-size: 11px;">JavaScript ES6</span>
+                                    <span style="background: #faf5ff; padding: 6px 12px; border-radius: 12px; font-size: 11px;">LocalStorage API</span>
+                                    <span style="background: #faf5ff; padding: 6px 12px; border-radius: 12px; font-size: 11px;">Regex</span>
+                                </div>
+                            </div>
+
+                            <div class="annotation">Version Info</div>
+                            <div class="wire-box">
+                                <div style="text-align: center; color: #64748b; font-size: 12px;">
+                                    Version 1.0.0<br>
+                                    Last Updated: October 2025
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TABLET VIEW -->
+            <div id="tablet-view" class="view-container tablet-layout">
+                <div class="screens-grid">
+
+                    <div class="screen">
+                        <div class="screen-header">🏠 Landing (Tablet)</div>
+                        <div class="screen-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <div class="hero" style="flex: 1; margin-right: 15px;">
+                                    <h2>CampusPlanner</h2>
+                                    <p>Organize your life</p>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div class="wire-stat">
+                                        <strong>24 Tasks</strong>
+                                        <div class="value">42.5 hours</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div class="wire-button">📊 Dashboard</div>
+                                <div class="wire-button">➕ Add Task</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">📊 Dashboard (Tablet - 2 Column Stats)</div>
+                        <div class="screen-body">
+                            <div class="annotation">Stats Grid</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div class="wire-stat">
+                                    <strong>TOTAL TASKS</strong>
+                                    <div class="value">24</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>DUE THIS WEEK</strong>
+                                    <div class="value">8</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>TOTAL HOURS</strong>
+                                    <div class="value">42.5</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>COMPLETED</strong>
+                                    <div class="value">18</div>
+                                </div>
+                            </div>
+                            <div class="wire-timeline">
+                                <div class="timeline-item">Upcoming tasks</div>
+                                <div class="timeline-item" style="background: #f97316;">This week</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">📋 Tasks (Tablet - 2 Column Cards)</div>
+                        <div class="screen-body">
+                            <div class="wire-input">🔍 Search tasks...</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
+                                <div class="wire-card">
+                                    <strong>CS Assignment</strong>
+                                    <p style="font-size: 11px; color: #64748b; margin: 5px 0;">📚 Academic • Oct 15</p>
+                                    <span class="priority-badge priority-high">HIGH</span>
+                                </div>
+                                <div class="wire-card">
+                                    <strong>Study Group</strong>
+                                    <p style="font-size: 11px; color: #64748b; margin: 5px 0;">👥 Social • Oct 12</p>
+                                    <span class="priority-badge priority-medium">MEDIUM</span>
+                                </div>
+                                <div class="wire-card">
+                                    <strong>Gym Workout</strong>
+                                    <p style="font-size: 11px; color: #64748b; margin: 5px 0;">💪 Health • Oct 11</p>
+                                    <span class="priority-badge priority-low">LOW</span>
+                                </div>
+                                <div class="wire-card">
+                                    <strong>Project Work</strong>
+                                    <p style="font-size: 11px; color: #64748b; margin: 5px 0;">📚 Academic • Oct 14</p>
+                                    <span class="priority-badge priority-high">HIGH</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">✅ Completed (Tablet)</div>
+                        <div class="screen-body">
+                            <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 30px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9;">COMPLETION RATE</div>
+                                <div style="font-size: 48px; font-weight: 700; margin: 10px 0;">75%</div>
+                                <div style="font-size: 12px;">18 of 24 tasks done</div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px;">
+                                <div class="wire-card" style="opacity: 0.7;">
+                                    <div style="text-decoration: line-through;">Math Homework</div>
+                                    <p style="font-size: 11px; color: #64748b;">Oct 8</p>
+                                </div>
+                                <div class="wire-card" style="opacity: 0.7;">
+                                    <div style="text-decoration: line-through;">Physics Lab</div>
+                                    <p style="font-size: 11px; color: #64748b;">Oct 7</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">⚙️ Settings (Tablet)</div>
+                        <div class="screen-body">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div class="wire-box">
+                                    <div class="annotation">Time Settings</div>
+                                    <div class="wire-input">Minutes</div>
+                                    <label style="font-size: 11px;">Conversion</label>
+                                    <div class="wire-input">120 min = 2 hrs</div>
+                                </div>
+                                <div class="wire-box">
+                                    <div class="annotation">Weekly Target</div>
+                                    <label>Hour Cap</label>
+                                    <div class="wire-input">40</div>
+                                </div>
+                            </div>
+                            <div class="wire-box" style="margin-top: 15px;">
+                                <div class="annotation">Data Management</div>
+                                <div class="wire-button">📤 Export</div>
+                                <div class="wire-button secondary">📥 Import</div>
+                                <div class="wire-button danger">🗑️ Clear</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">📄 About (Tablet)</div>
+                        <div class="screen-body">
+                            <div class="hero">
+                                <h2>Campus Life Planner</h2>
+                                <p>Organize your academic journey</p>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                                <div class="wire-box">
+                                    <div class="annotation">Features</div>
+                                    <div class="wire-text"></div>
+                                    <div class="wire-text"></div>
+                                    <div class="wire-text"></div>
+                                </div>
+                                <div class="wire-box">
+                                    <div class="annotation">Developer</div>
+                                    <div class="wire-button">GitHub</div>
+                                    <div class="wire-button">Email</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- DESKTOP VIEW -->
+            <div id="desktop-view" class="view-container desktop-layout">
+                <div class="screens-grid">
+
+                    <div class="screen">
+                        <div class="screen-header">🏠 Landing (Desktop - Wide Layout)</div>
+                        <div class="screen-body">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div>
+                                    <div class="hero">
+                                        <h2>CampusPlanner</h2>
+                                        <p>Organize your academic life</p>
+                                    </div>
+                                    <div class="wire-button">📊 View Dashboard</div>
+                                    <div class="wire-button">➕ Add Task</div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                    <div class="feature-box">
+                                        <strong style="font-size: 24px;">24</strong><br>
+                                        <span style="font-size: 11px;">Active Tasks</span>
+                                    </div>
+                                    <div class="feature-box">
+                                        <strong style="font-size: 24px;">8</strong><br>
+                                        <span style="font-size: 11px;">Due This Week</span>
+                                    </div>
+                                    <div class="feature-box">
+                                        <strong style="font-size: 24px;">42.5</strong><br>
+                                        <span style="font-size: 11px;">Total Hours</span>
+                                    </div>
+                                    <div class="feature-box">
+                                        <strong style="font-size: 24px;">75%</strong><br>
+                                        <span style="font-size: 11px;">Completion</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen" style="grid-column: span 2;">
+                        <div class="screen-header">📊 Dashboard (Desktop - 4 Column Grid)</div>
+                        <div class="screen-body">
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px;">
+                                <div class="wire-stat">
+                                    <strong>TASKS</strong>
+                                    <div class="value">24</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>DUE WEEK</strong>
+                                    <div class="value">8</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>HOURS</strong>
+                                    <div class="value">42.5</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>COMPLETED</strong>
+                                    <div class="value">18</div>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
+                                <div>
+                                    <div class="annotation">Weekly Timeline</div>
+                                    <div class="wire-timeline">
+                                        <div class="timeline-item" style="width: 70%;">Mon: 4.5hrs</div>
+                                        <div class="timeline-item" style="width: 50%; background: #f97316;">Tue: 3hrs</div>
+                                        <div class="timeline-item" style="width: 90%; background: #ef4444;">Wed: 6hrs</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="annotation">Top Tags</div>
+                                    <div class="wire-box">
+                                        <div class="wire-text"></div>
+                                        <div class="wire-text short"></div>
+                                        <div class="wire-text medium"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen" style="grid-column: span 3;">
+                        <div class="screen-header">📋 All Tasks (Desktop - Full Table)</div>
+                        <div class="screen-body">
+                            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                <div class="wire-input" style="flex: 1;">🔍 Regex search...</div>
+                                <div class="wire-button">Sort ⬆️</div>
+                                <div class="wire-button secondary">Filter</div>
+                            </div>
+                            <table class="wire-table">
+                                <thead>
+                                    <tr>
+                                        <th>Due Date ⬇️</th>
+                                        <th>Title</th>
+                                        <th>Tag</th>
+                                        <th>Duration</th>
+                                        <th>Priority</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2025-10-15</td>
+                                        <td>Submit CS Assignment</td>
+                                        <td>📚 Academic</td>
+                                        <td>2.0 hrs</td>
+                                        <td><span class="priority-badge priority-high">HIGH</span></td>
+                                        <td><span class="status-badge">In Progress</span></td>
+                                        <td>
+                                            <span class="wire-button" style="padding: 4px 8px; font-size: 10px;">✏️</span>
+                                            <span class="wire-button" style="padding: 4px 8px; font-size: 10px; background: #10b981;">✓</span>
+                                            <span class="wire-button danger" style="padding: 4px 8px; font-size: 10px;">🗑️</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-10-12</td>
+                                        <td>Group Study Session</td>
+                                        <td>👥 Social</td>
+                                        <td>1.5 hrs</td>
+                                        <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+                                        <td><span class="status-badge">Todo</span></td>
+                                        <td>
+                                            <span class="wire-button" style="padding: 4px 8px; font-size: 10px;">✏️</span>
+                                            <span class="wire-button" style="padding: 4px 8px; font-size: 10px; background: #10b981;">✓</span>
+                                            <span class="wire-button danger" style="padding: 4px 8px; font-size: 10px;">🗑️</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-10-11</td>
+                                        <td>Gym Workout</td>
+                                        <td>💪 Health</td>
+                                        <td>1.0 hrs</td>
+                                        <td><span class="priority-badge priority-low">LOW</span></td>
+                                        <td><span class="status-badge">Todo</span></td>
+                                        <td>
+                                            <span class="wire-button" style="padding: 4px 8px; font-size: 10px;">✏️</span>
+                                            <span class="wire-button" style="padding: 4px 8px; font-size: 10px; background: #10b981;">✓</span>
+                                            <span class="wire-button danger" style="padding: 4px 8px; font-size: 10px;">🗑️</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">✅ Completed (Desktop)</div>
+                        <div class="screen-body">
+                            <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 20px;">
+                                <div style="font-size: 12px; opacity: 0.9;">COMPLETION</div>
+                                <div style="font-size: 42px; font-weight: 700;">75%</div>
+                                <div style="font-size: 11px;">18 / 24 tasks</div>
+                            </div>
+                            <div class="wire-box">
+                                <div class="annotation">Recent Completions</div>
+                                <div class="wire-text"></div>
+                                <div class="wire-text medium"></div>
+                                <div class="wire-text short"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">📈 Timeline (Desktop)</div>
+                        <div class="screen-body">
+                            <div class="wire-timeline" style="height: 200px;">
+                                <div class="timeline-item">Week overview</div>
+                                <div class="timeline-item" style="background: #f97316;">Tasks timeline</div>
+                                <div class="timeline-item" style="background: #64748b;">Productivity</div>
+                            </div>
+                            <div class="wire-box" style="margin-top: 15px;">
+                                <div class="annotation">Statistics</div>
+                                <div class="wire-text"></div>
+                                <div class="wire-text short"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">⚙️ Settings (Desktop)</div>
+                        <div class="screen-body">
+                            <div class="wire-box">
+                                <div class="annotation">Time Settings</div>
+                                <div class="wire-input">Minutes</div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                                    <div class="wire-input">120 min</div>
+                                    <div class="wire-input">2.0 hrs</div>
+                                </div>
+                            </div>
+                            <div class="wire-box">
+                                <div class="annotation">Weekly Cap</div>
+                                <div class="wire-input">40 hours</div>
+                            </div>
+                            <div class="wire-box">
+                                <div class="wire-button">📤 Export</div>
+                                <div class="wire-button secondary">📥 Import</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchView(viewName) {
+            // Remove active class from all tabs and views
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.view-container').forEach(view => view.classList.remove('active'));
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Show corresponding view
+            document.getElementById(viewName + '-view').classList.add('active');
+        }
+    </script>
+</body>
+</html>px; font-size: 11px;">📚 Academic</span>
+                                    <span style="background: #f3e8ff; padding: 6px 12px; border-radius: 12

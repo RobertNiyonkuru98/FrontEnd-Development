@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header role="banner">
+      <nav>
+        <div class="nav-container">
+          <div class="nav-logo">
+            <h1 class="logo">💵MyTracker💵</spam>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+          </div>
+          <div class="nav-list">
+            <ul class="nav-menu">
+              <li class="dashboard">
+                <a href="./dashboard.html">Dashboard</a>
+              </li>
+              <li class="transactions">
+                <a href="./transaction.html">Transaction</a>
+              </li>
+              <li><a href="./setting.html" class="nav-link">Setting</a></li>
+              <li><a href="./about.html" class="nav-link">About</a></li>
+              <li><a href="./balance.html" class="nav-link">Balance</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content" role="main">
+      <section
+        id="home"
+        class="section active"
+        aria-labelledby="home-heading"
+      >
+        <div class="container">
+          <div class="hero">
+            <h2 id="home-heading">Welcome To MyTracker</h2>
+            <p class="hero-subtitle">Smart Budgetting made for Students</p>
+          </div>
+          <div class="quick-stats">
+            <div class="stats">
+                <span class="numbers">0 RWF</span>
+                <h3 class="context">Balance</h3>
+            </div>
+            <div class="stats">
+                <span class="numbers">0 RWF</span>
+                <h3 class="context">Balance</h3>
+            </div>
+            <div class="stats">
+                <span class="numbers">0 RWF</span>
+                <h3 class="context">Balance</h3>
+            </div>
+            <div class="stats">
+                <span class="numbers">0 RWF</span>
+                <h3 class="context">Balance</h3>
+            </div>
+            </div>
+        </div>
+      </section>
+    </main>
+
+    <footer role="containerinfo">
+        <div class="container">
+            <p>&copy; 2025 💵MyTracker💵. Built for students, by students.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="../js/app.js"></script>
+  </body>
+</html>

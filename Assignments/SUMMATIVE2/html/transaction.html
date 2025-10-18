@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <title>Transaction</title>
+  </head>
+  <body>
+    <header role="banner">
+        <nav>
+            <div class="nav-container">
+          <div class="nav-logo">
+            <h1 class="logo">💵MyTracker💵</spam>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+          </div>
+          <div class="nav-list">
+            <ul class="nav-menu">
+              <li class="dashboard">
+                <a href="./dashboard.html">Dashboard</a>
+              </li>
+              <li class="transactions">
+                <a href="./transaction.html">Transaction</a>
+              </li>
+              <li><a href="./setting.html" class="nav-link">Setting</a></li>
+              <li><a href="./about.html" class="nav-link">About</a></li>
+              <li><a href="./balance.html" class="nav-link">Balance</a></li>
+            </ul>
+          </div>
+        </div>
+        </nav>
+    </header>
+
+    <main id="main-content" role="main">
+        <section id="transaction" class="section active" aria-labelledby="transaction heading">
+            <div class="container">
+                <h2 id="transactions-heading">All Transactions</h2>
+
+                <div class="controls">
+                    <div class="search-box">
+                        <label for="regex-search" class="sr-only">Search Transactions using regex</label>
+                        <input type="text" id="search-input" class="regex-search" aria-describedby="search-help" placeholder="Search">
+                        <div class="help-text" id="search-help">
+                            Try keywords like: Coffee
+                        </div>
+                        <div class="search-options">
+                            <label>
+                                <input type="checkbox" id="case-sensitive" aria-label="Case sensitive search"> Case Sensitive
+                            </label>
+                        </div>
+                        <div class="error-message" id="search-error" role="alert" aria-live="assertive"></div>
+                    </div>
+
+                    <div class="filter-sort">
+                        <button class="btn btn-secondary" id="sort-date" aria-label="Sort by date">
+                            Sort by Date
+                        </button>
+                        <button class="btn btn-secondary" id="sort-date" aria-label="Sort by date">
+                            Sort by Description A-Z
+                        </button>
+                        <button class="btn btn-secondary" id="sort-date" aria-label="Sort by date">
+                            Sort by Amount
+                        </button>
+                    </div>
+                    <button class="btn btn-primary" id="add-transaction-btn">
+                            Add New Transaction
+                    </button>
+                </div>
+
+                <!-- List by Cards on Mobile and Table on Desktop -->
+
+                <div id="transactions-container">
+                  <!-- Mobile Cards-->
+                   <div class="transactions-cards" id="transactions-cards">
+                    <!-- Dynamic cards -->
+                   </div>
+
+                   <!-- Desktop: Table -->
+                    <div class="transactions-table-wrapper">
+                      <table class="transactions-table" id="transactions-table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Payment</th>
+                            <th scope="col">Actions</th>
+                          </tr>
+                        </thead>
+                          <tbody id="transactions-tbody">
+                            <!-- Dynamic rows -->
+                          </tbody>
+                      </table>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                 <div id="empty-state" class="empty-state" hidden>
+                  <p>
+                    No transactions found. Add your first transaction to get Started
+                  </p>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="container">
+        <p>&copy; 2025 FinanceTracker. Built for students, by students.</p>
+      </div>
+    </footer>
+  </body>
+</html>

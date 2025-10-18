@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker - Complete Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .wireframe-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        /* Tab Controls */
+        .device-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            background: white;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab {
+            padding: 12px 24px;
+            background: #f1f5f9;
+            border: 2px solid #cbd5e1;
+            cursor: pointer;
+            font-size: 16px;
+            color: #475569;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .tab:hover {
+            background: #e0f2fe;
+            border-color: #2563eb;
+        }
+        .tab.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        /* Screen Container */
+        .all-screens {
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .view-container {
+            display: none;
+        }
+        .view-container.active {
+            display: block;
+        }
+
+        .screens-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        /* Mobile: 1 column */
+        .mobile-layout .screens-grid {
+            grid-template-columns: 1fr;
+            max-width: 375px;
+            margin: 0 auto;
+        }
+
+        /* Tablet: 2 columns */
+        .tablet-layout .screens-grid {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Desktop: 3 columns */
+        .desktop-layout .screens-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .screen {
+            background: #f8fafc;
+            border: 2px solid #cbd5e1;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .screen-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .screen-body {
+            padding: 20px;
+        }
+
+        /* Wireframe Elements */
+        .wire-nav {
+            background: #1e293b;
+            color: white;
+            padding: 15px;
+            margin: -20px -20px 20px -20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .wire-nav-item {
+            background: #334155;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        .wire-box {
+            border: 2px dashed #cbd5e1;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: white;
+        }
+        .wire-text {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            margin: 8px 0;
+        }
+        .wire-text.short { width: 40%; }
+        .wire-text.medium { width: 70%; }
+        .wire-text.long { width: 100%; }
+
+        .wire-button {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            margin: 5px 5px 5px 0;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .wire-button.secondary {
+            background: #64748b;
+        }
+        .wire-button.danger {
+            background: #ef4444;
+        }
+        .wire-input {
+            border: 2px solid #cbd5e1;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 8px 0;
+            background: white;
+            font-size: 13px;
+            color: #64748b;
+        }
+        .wire-card {
+            border: 2px solid #cbd5e1;
+            padding: 15px;
+            border-radius: 8px;
+            background: white;
+            margin: 10px 0;
+        }
+        .wire-stat {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            border-radius: 8px;
+            color: white;
+            margin: 10px 0;
+        }
+        .wire-stat strong {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+        .wire-stat .value {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .wire-chart {
+            height: 150px;
+            background: linear-gradient(to top,
+                #2563eb 0%, #2563eb 30%,
+                #60a5fa 30%, #60a5fa 50%,
+                #cbd5e1 50%, #cbd5e1 100%);
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #cbd5e1;
+        }
+        .wire-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .wire-table th, .wire-table td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+        }
+        .wire-table th {
+            background: #f1f5f9;
+            font-weight: 600;
+            font-size: 11px;
+        }
+        .annotation {
+            color: #2563eb;
+            font-size: 11px;
+            font-weight: 700;
+            margin: 15px 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px 0 20px 0;
+        }
+        .hero h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .feature-box {
+            background: white;
+            border: 2px solid #cbd5e1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .progress-bar {
+            background: #e2e8f0;
+            height: 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+            height: 100%;
+            border-radius: 12px;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin: 15px 0 5px 0;
+            font-size: 13px;
+            color: #1e293b;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        <h1>💰 Student Finance Tracker - All Pages Wireframes</h1>
+        <p class="subtitle">Complete visual guide with navigation • Click tabs to see responsive layouts</p>
+
+        <div class="device-tabs">
+            <button class="tab active" onclick="switchView('mobile')">📱 Mobile (360px)</button>
+            <button class="tab" onclick="switchView('tablet')">📱 Tablet (768px)</button>
+            <button class="tab" onclick="switchView('desktop')">💻 Desktop (1024px+)</button>
+        </div>
+
+        <div class="all-screens">
+            <!-- MOBILE VIEW -->
+            <div id="mobile-view" class="view-container mobile-layout active">
+                <div class="screens-grid">
+
+                    <!-- 1. Landing Page -->
+                    <div class="screen">
+                        <div class="screen-header">🏠 Landing Page</div>
+                        <div class="screen-body">
+                            <div class="hero">
+                                <h2>FinanceTracker</h2>
+                                <p>Smart budgeting for students</p>
+                            </div>
+                            <div class="annotation">Quick Stats Preview</div>
+                            <div class="feature-grid">
+                                <div class="feature-box">
+                                    <strong>47</strong><br>
+                                    <span style="font-size: 11px; color: #64748b;">Transactions</span>
+                                </div>
+                                <div class="feature-box">
+                                    <strong>RWF 125K</strong><br>
+                                    <span style="font-size: 11px; color: #64748b;">Total Spent</span>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 20px;">
+                                <div class="wire-button">📊 View Dashboard</div>
+                                <div class="wire-button">➕ Add Transaction</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Navigation Menu -->
+                    <div class="screen">
+                        <div class="screen-header">🧭 Navigation (Mobile Menu)</div>
+                        <div class="screen-body">
+                            <div class="annotation">Hamburger Menu Expanded</div>
+                            <div class="wire-card">
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e2e8f0;">🏠 Home</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e2e8f0;">📊 Dashboard</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e2e8f0;">📋 All Transactions</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e2e8f0;">➕ Add New</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e2e8f0;">💰 Balance</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e2e8f0;">📈 History</div>
+                                <div style="font-weight: 600; padding: 10px; border-bottom: 1px solid #e2e8f0;">⚙️ Settings</div>
+                                <div style="font-weight: 600; padding: 10px;">📄 About</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Dashboard -->
+                    <div class="screen">
+                        <div class="screen-header">📊 Dashboard</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>FinanceTracker</span>
+                                <span>👤</span>
+                            </div>
+                            <div class="annotation">Key Metrics</div>
+                            <div class="wire-stat">
+                                <strong>TOTAL SPENT</strong>
+                                <div class="value">RWF 125,450</div>
+                            </div>
+                            <div class="wire-stat">
+                                <strong>THIS WEEK</strong>
+                                <div class="value">RWF 23,500</div>
+                            </div>
+                            <div class="wire-stat">
+                                <strong>TRANSACTIONS</strong>
+                                <div class="value">47 records</div>
+                            </div>
+
+                            <div class="annotation">Budget Status</div>
+                            <div class="wire-box">
+                                <div style="font-size: 12px; color: #64748b; margin-bottom: 5px;">Monthly Budget: RWF 100,000</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%;"></div>
+                                </div>
+                                <div style="font-size: 12px; color: #10b981; font-weight: 600; margin-top: 5px;">RWF 40,000 remaining</div>
+                            </div>
+
+                            <div class="annotation">7-Day Spending Trend</div>
+                            <div class="wire-chart"></div>
+                        </div>
+                    </div>
+
+                    <!-- 4. All Transactions -->
+                    <div class="screen">
+                        <div class="screen-header">📋 All Transactions</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>All Transactions</span>
+                                <span>🔍</span>
+                            </div>
+
+                            <div class="annotation">Search & Filter</div>
+                            <div class="wire-input">🔍 Regex search (e.g., /coffee/i)</div>
+                            <div style="display: flex; gap: 8px;">
+                                <div class="wire-button">Sort by Date ⬇️</div>
+                                <div class="wire-button secondary">Filter</div>
+                            </div>
+
+                            <div class="annotation">Transaction Cards (47 total)</div>
+                            <div class="wire-card">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong style="font-size: 14px;">Lunch at cafeteria</strong>
+                                    <span style="color: #ef4444; font-weight: 700; font-size: 16px;">-RWF 12.5K</span>
+                                </div>
+                                <div style="color: #64748b; font-size: 12px; margin-bottom: 10px;">
+                                    🍔 Food • Oct 9, 2025
+                                </div>
+                                <div>
+                                    <span class="wire-button" style="padding: 6px 12px;">✏️ Edit</span>
+                                    <span class="wire-button danger" style="padding: 6px 12px;">🗑️ Delete</span>
+                                </div>
+                            </div>
+
+                            <div class="wire-card">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong style="font-size: 14px;">Chemistry textbook</strong>
+                                    <span style="color: #ef4444; font-weight: 700; font-size: 16px;">-RWF 89.9K</span>
+                                </div>
+                                <div style="color: #64748b; font-size: 12px; margin-bottom: 10px;">
+                                    📚 Books • Oct 7, 2025
+                                </div>
+                                <div>
+                                    <span class="wire-button" style="padding: 6px 12px;">✏️ Edit</span>
+                                    <span class="wire-button danger" style="padding: 6px 12px;">🗑️ Delete</span>
+                                </div>
+                            </div>
+
+                            <div class="wire-card">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <strong style="font-size: 14px;">Bus pass monthly</strong>
+                                    <span style="color: #ef4444; font-weight: 700; font-size: 16px;">-RWF 45K</span>
+                                </div>
+                                <div style="color: #64748b; font-size: 12px; margin-bottom: 10px;">
+                                    🚌 Transport • Oct 5, 2025
+                                </div>
+                                <div>
+                                    <span class="wire-button" style="padding: 6px 12px;">✏️ Edit</span>
+                                    <span class="wire-button danger" style="padding: 6px 12px;">🗑️ Delete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Add Transaction Form -->
+                    <div class="screen">
+                        <div class="screen-header">➕ Add Transaction</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>← Back</span>
+                                <span>New Transaction</span>
+                                <span></span>
+                            </div>
+
+                            <div class="annotation">Form Fields</div>
+
+                            <label>Description *</label>
+                            <div class="wire-input">e.g., Lunch at cafeteria</div>
+                            <div style="color: #ef4444; font-size: 11px; margin-top: -5px;">⚠️ No leading/trailing spaces allowed</div>
+
+                            <label>Amount (RWF) *</label>
+                            <div class="wire-input">0.00</div>
+                            <div style="color: #64748b; font-size: 11px; margin-top: -5px;">Must be positive number with max 2 decimals</div>
+
+                            <label>Category *</label>
+                            <div class="wire-input">
+                                <select style="width: 100%; border: none; background: transparent; font-size: 13px;">
+                                    <option>Food</option>
+                                    <option>Books</option>
+                                    <option>Transport</option>
+                                    <option>Entertainment</option>
+                                    <option>Fees</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <label>Date *</label>
+                            <div class="wire-input">2025-10-09</div>
+                            <div style="color: #64748b; font-size: 11px; margin-top: -5px;">Format: YYYY-MM-DD</div>
+
+                            <label>Payment Method (Optional)</label>
+                            <div class="wire-input">
+                                <select style="width: 100%; border: none; background: transparent; font-size: 13px;">
+                                    <option>Cash</option>
+                                    <option>Mobile Money</option>
+                                    <option>Card</option>
+                                </select>
+                            </div>
+
+                            <div style="margin-top: 25px;">
+                                <div class="wire-button">💾 Save Transaction</div>
+                                <div class="wire-button secondary">❌ Cancel</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Balance View -->
+                    <div class="screen">
+                        <div class="screen-header">💰 Current Balance</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>Balance</span>
+                                <span>🔄</span>
+                            </div>
+
+                            <div class="annotation">Total Balance</div>
+                            <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 30px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">AVAILABLE BALANCE</div>
+                                <div style="font-size: 32px; font-weight: 700;">RWF 274,550</div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-top: 5px;">Last updated: Oct 9, 2025</div>
+                            </div>
+
+                            <div class="annotation">Breakdown by Category</div>
+                            <div class="wire-card">
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <span>🍔 Food</span>
+                                    <strong style="color: #ef4444;">-RWF 45,200</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <span>📚 Books</span>
+                                    <strong style="color: #ef4444;">-RWF 89,900</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <span>🚌 Transport</span>
+                                    <strong style="color: #ef4444;">-RWF 45,000</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <span>🎮 Entertainment</span>
+                                    <strong style="color: #ef4444;">-RWF 12,350</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0;">
+                                    <span>📝 Fees</span>
+                                    <strong style="color: #ef4444;">-RWF 0</strong>
+                                </div>
+                            </div>
+
+                            <div class="annotation">Currency Conversion</div>
+                            <div class="wire-box">
+                                <div style="font-size: 12px; color: #64748b; margin-bottom: 10px;">Your balance in other currencies:</div>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>USD</span>
+                                    <strong>$228.79</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                                    <span>EUR</span>
+                                    <strong>€211.19</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. History View -->
+                    <div class="screen">
+                        <div class="screen-header">📈 Spending History</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>History</span>
+                                <span>📅</span>
+                            </div>
+
+                            <div class="annotation">Filter by Time Period</div>
+                            <div style="display: flex; gap: 8px; margin-bottom: 15px;">
+                                <div class="wire-button">7 Days</div>
+                                <div class="wire-button secondary">30 Days</div>
+                                <div class="wire-button secondary">All Time</div>
+                            </div>
+
+                            <div class="annotation">Spending Trend Chart</div>
+                            <div class="wire-chart"></div>
+
+                            <div class="annotation">Monthly Comparison</div>
+                            <div class="wire-card">
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <span>October 2025</span>
+                                    <strong>RWF 125,450</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                                    <span>September 2025</span>
+                                    <strong>RWF 98,320</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0;">
+                                    <span>August 2025</span>
+                                    <strong>RWF 112,780</strong>
+                                </div>
+                            </div>
+
+                            <div class="annotation">Top Spending Categories</div>
+                            <div class="wire-box">
+                                <div style="margin: 10px 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="font-size: 12px;">📚 Books</span>
+                                        <span style="font-size: 12px; font-weight: 600;">36%</span>
+                                    </div>
+                                    <div class="progress-bar" style="height: 16px;">
+                                        <div class="progress-fill" style="width: 36%; background: #2563eb;"></div>
+                                    </div>
+                                </div>
+                                <div style="margin: 10px 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span style="font-size: 12px;">🍔 Food</span>
+                                        <span style="font-size: 12px; font-weight: 600;">28%</span>
+                                    </div>
+                                    <div class="progress-bar" style="height: 16px;">
+                                        <div class="progress-fill" style="width: 28%; background: #f97316;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Settings -->
+                    <div class="screen">
+                        <div class="screen-header">⚙️ Settings</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>Settings</span>
+                                <span></span>
+                            </div>
+
+                            <div class="annotation">Currency Settings</div>
+                            <div class="wire-box">
+                                <label>Base Currency</label>
+                                <div class="wire-input">
+                                    <select style="width: 100%; border: none; background: transparent;">
+                                        <option>RWF (Rwandan Franc)</option>
+                                        <option>USD (US Dollar)</option>
+                                        <option>EUR (Euro)</option>
+                                    </select>
+                                </div>
+
+                                <label>Exchange Rates (Manual)</label>
+                                <div style="display: flex; gap: 10px; align-items: center; margin: 10px 0;">
+                                    <span style="font-size: 13px;">1 USD =</span>
+                                    <div class="wire-input" style="flex: 1;">1200</div>
+                                    <span style="font-size: 13px;">RWF</span>
+                                </div>
+                                <div style="display: flex; gap: 10px; align-items: center; margin: 10px 0;">
+                                    <span style="font-size: 13px;">1 EUR =</span>
+                                    <div class="wire-input" style="flex: 1;">1300</div>
+                                    <span style="font-size: 13px;">RWF</span>
+                                </div>
+                            </div>
+
+                            <div class="annotation">Budget Settings</div>
+                            <div class="wire-box">
+                                <label>Monthly Budget Cap (RWF)</label>
+                                <div class="wire-input">100000</div>
+                                <div style="color: #64748b; font-size: 11px; margin-top: 5px;">Set to 0 to disable budget tracking</div>
+                            </div>
+
+                            <div class="annotation">Categories Management</div>
+                            <div class="wire-box">
+                                <div style="font-size: 12px; color: #64748b; margin-bottom: 10px;">Default Categories:</div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                    <span style="background: #e0f2fe; padding: 6px 12px; border-radius: 12px; font-size: 11px;">📚 Books</span>
+                                    <span style="background: #e0f2fe; padding: 6px 12px; border-radius: 12px; font-size: 11px;">🚌 Transport</span>
+                                    <span style="background: #e0f2fe; padding: 6px 12px; border-radius: 12px; font-size: 11px;">🎮 Entertainment</span>
+                                    <span style="background: #e0f2fe; padding: 6px 12px; border-radius: 12px; font-size: 11px;">📝 Fees</span>
+                                    <span style="background: #e0f2fe; padding: 6px 12px; border-radius: 12px; font-size: 11px;">📦 Other</span>
+                                </div>
+                                <div class="wire-button" style="margin-top: 10px;">➕ Add Custom Category</div>
+                            </div>
+
+                            <div class="annotation">Data Management</div>
+                            <div class="wire-box">
+                                <div class="wire-button">📤 Export Data (JSON)</div>
+                                <div class="wire-button secondary">📥 Import Data (JSON)</div>
+                                <div class="wire-button danger">🗑️ Clear All Data</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. About Page -->
+                    <div class="screen">
+                        <div class="screen-header">📄 About</div>
+                        <div class="screen-body">
+                            <div class="wire-nav">
+                                <span>☰</span>
+                                <span>About</span>
+                                <span></span>
+                            </div>
+
+                            <div class="hero">
+                                <h2>Student Finance Tracker</h2>
+                                <p>Smart budgeting made simple</p>
+                            </div>
+
+                            <div class="annotation">Features</div>
+                            <div class="wire-box">
+                                <div style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                                    ✅ Track unlimited transactions
+                                </div>
+                                <div style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                                    ✅ Multi-currency support
+                                </div>
+                                <div style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                                    ✅ Budget caps & alerts
+                                </div>
+                                <div style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                                    ✅ Advanced regex search
+                                </div>
+                                <div style="padding: 10px 0;">
+                                    ✅ Export/Import JSON data
+                                </div>
+                            </div>
+
+                            <div class="annotation">Developer Info</div>
+                            <div class="wire-box">
+                                <div style="font-size: 13px; margin: 8px 0;">
+                                    <strong>Created by:</strong> Your Name
+                                </div>
+                                <div style="font-size: 13px; margin: 8px 0;">
+                                    <strong>Email:</strong> your.email@example.com
+                                </div>
+                                <div style="margin-top: 15px;">
+                                    <div class="wire-button">🔗 GitHub Repository</div>
+                                </div>
+                            </div>
+
+                            <div class="annotation">Technologies Used</div>
+                            <div class="wire-box">
+                                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                    <span style="background: #f1f5f9; padding: 6px 12px; border-radius: 12px; font-size: 11px;">HTML5</span>
+                                    <span style="background: #f1f5f9; padding: 6px 12px; border-radius: 12px; font-size: 11px;">CSS3</span>
+                                    <span style="background: #f1f5f9; padding: 6px 12px; border-radius: 12px; font-size: 11px;">JavaScript ES6</span>
+                                    <span style="background: #f1f5f9; padding: 6px 12px; border-radius: 12px; font-size: 11px;">LocalStorage API</span>
+                                    <span style="background: #f1f5f9; padding: 6px 12px; border-radius: 12px; font-size: 11px;">Regex</span>
+                                </div>
+                            </div>
+
+                            <div class="annotation">Version Info</div>
+                            <div class="wire-box">
+                                <div style="text-align: center; color: #64748b; font-size: 12px;">
+                                    Version 1.0.0<br>
+                                    Last Updated: October 2025
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TABLET VIEW -->
+            <div id="tablet-view" class="view-container tablet-layout">
+                <div class="screens-grid">
+
+                    <div class="screen">
+                        <div class="screen-header">🏠 Landing (Tablet)</div>
+                        <div class="screen-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <div class="hero" style="flex: 1; margin-right: 15px;">
+                                    <h2>FinanceTracker</h2>
+                                    <p>Smart budgeting</p>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div class="wire-stat">
+                                        <strong>47 Transactions</strong>
+                                        <div class="value">RWF 125K</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div class="wire-button">📊 Dashboard</div>
+                                <div class="wire-button">➕ Add Transaction</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">📊 Dashboard (Tablet - 2 Column Stats)</div>
+                        <div class="screen-body">
+                            <div class="annotation">Stats Grid</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div class="wire-stat">
+                                    <strong>TOTAL SPENT</strong>
+                                    <div class="value">RWF 125K</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>THIS WEEK</strong>
+                                    <div class="value">RWF 23.5K</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>TRANSACTIONS</strong>
+                                    <div class="value">47</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>AVERAGE</strong>
+                                    <div class="value">RWF 2.6K</div>
+                                </div>
+                            </div>
+                            <div class="wire-chart"></div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">📋 Transactions (Tablet - 2 Column Cards)</div>
+                        <div class="screen-body">
+                            <div class="wire-input">🔍 Search transactions...</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
+                                <div class="wire-card">
+                                    <strong>Lunch at cafeteria</strong>
+                                    <p style="color: #ef4444; font-weight: 700; margin: 5px 0;">-RWF 12.5K</p>
+                                    <p style="color: #64748b; font-size: 11px;">Food • Oct 9</p>
+                                </div>
+                                <div class="wire-card">
+                                    <strong>Chemistry textbook</strong>
+                                    <p style="color: #ef4444; font-weight: 700; margin: 5px 0;">-RWF 89.9K</p>
+                                    <p style="color: #64748b; font-size: 11px;">Books • Oct 7</p>
+                                </div>
+                                <div class="wire-card">
+                                    <strong>Bus pass</strong>
+                                    <p style="color: #ef4444; font-weight: 700; margin: 5px 0;">-RWF 45K</p>
+                                    <p style="color: #64748b; font-size: 11px;">Transport • Oct 5</p>
+                                </div>
+                                <div class="wire-card">
+                                    <strong>Coffee with friends</strong>
+                                    <p style="color: #ef4444; font-weight: 700; margin: 5px 0;">-RWF 8.7K</p>
+                                    <p style="color: #64748b; font-size: 11px;">Entertainment • Oct 3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">💰 Balance (Tablet)</div>
+                        <div class="screen-body">
+                            <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 40px; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 14px; opacity: 0.9;">AVAILABLE BALANCE</div>
+                                <div style="font-size: 48px; font-weight: 700; margin: 10px 0;">RWF 274,550</div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                                <div class="wire-card">
+                                    <div style="color: #64748b; font-size: 11px;">USD Balance</div>
+                                    <div style="font-size: 24px; font-weight: 700;">$228.79</div>
+                                </div>
+                                <div class="wire-card">
+                                    <div style="color: #64748b; font-size: 11px;">EUR Balance</div>
+                                    <div style="font-size: 24px; font-weight: 700;">€211.19</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">⚙️ Settings (Tablet)</div>
+                        <div class="screen-body">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div class="wire-box">
+                                    <div class="annotation">Currency</div>
+                                    <div class="wire-input">RWF</div>
+                                    <label style="font-size: 11px;">USD Rate</label>
+                                    <div class="wire-input">1200</div>
+                                    <label style="font-size: 11px;">EUR Rate</label>
+                                    <div class="wire-input">1300</div>
+                                </div>
+                                <div class="wire-box">
+                                    <div class="annotation">Budget</div>
+                                    <label>Monthly Cap</label>
+                                    <div class="wire-input">100000</div>
+                                </div>
+                            </div>
+                            <div class="wire-box" style="margin-top: 15px;">
+                                <div class="annotation">Data Management</div>
+                                <div class="wire-button">📤 Export</div>
+                                <div class="wire-button secondary">📥 Import</div>
+                                <div class="wire-button danger">🗑️ Clear</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">📄 About (Tablet)</div>
+                        <div class="screen-body">
+                            <div class="hero">
+                                <h2>Student Finance Tracker</h2>
+                                <p>Smart budgeting made simple</p>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                                <div class="wire-box">
+                                    <div class="annotation">Features</div>
+                                    <div class="wire-text"></div>
+                                    <div class="wire-text"></div>
+                                    <div class="wire-text"></div>
+                                </div>
+                                <div class="wire-box">
+                                    <div class="annotation">Developer</div>
+                                    <div class="wire-button">GitHub</div>
+                                    <div class="wire-button">Email</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- DESKTOP VIEW -->
+            <div id="desktop-view" class="view-container desktop-layout">
+                <div class="screens-grid">
+
+                    <div class="screen">
+                        <div class="screen-header">🏠 Landing (Desktop - Wide Layout)</div>
+                        <div class="screen-body">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div>
+                                    <div class="hero">
+                                        <h2>FinanceTracker</h2>
+                                        <p>Smart budgeting for students</p>
+                                    </div>
+                                    <div class="wire-button">📊 View Dashboard</div>
+                                    <div class="wire-button">➕ Add Transaction</div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                    <div class="feature-box">
+                                        <strong style="font-size: 24px;">47</strong><br>
+                                        <span style="font-size: 11px;">Transactions</span>
+                                    </div>
+                                    <div class="feature-box">
+                                        <strong style="font-size: 24px;">RWF 125K</strong><br>
+                                        <span style="font-size: 11px;">Total Spent</span>
+                                    </div>
+                                    <div class="feature-box">
+                                        <strong style="font-size: 24px;">6</strong><br>
+                                        <span style="font-size: 11px;">Categories</span>
+                                    </div>
+                                    <div class="feature-box">
+                                        <strong style="font-size: 24px;">RWF 2.6K</strong><br>
+                                        <span style="font-size: 11px;">Average</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen" style="grid-column: span 2;">
+                        <div class="screen-header">📊 Dashboard (Desktop - 4 Column Grid)</div>
+                        <div class="screen-body">
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px;">
+                                <div class="wire-stat">
+                                    <strong>TOTAL</strong>
+                                    <div class="value">RWF 125K</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>WEEK</strong>
+                                    <div class="value">RWF 23.5K</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>RECORDS</strong>
+                                    <div class="value">47</div>
+                                </div>
+                                <div class="wire-stat">
+                                    <strong>AVERAGE</strong>
+                                    <div class="value">RWF 2.6K</div>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
+                                <div>
+                                    <div class="annotation">7-Day Trend</div>
+                                    <div class="wire-chart"></div>
+                                </div>
+                                <div>
+                                    <div class="annotation">Top Categories</div>
+                                    <div class="wire-box">
+                                        <div class="wire-text"></div>
+                                        <div class="wire-text short"></div>
+                                        <div class="wire-text medium"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen" style="grid-column: span 3;">
+                        <div class="screen-header">📋 All Transactions (Desktop - Full Table)</div>
+                        <div class="screen-body">
+                            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                <div class="wire-input" style="flex: 1;">🔍 Regex search...</div>
+                                <div class="wire-button">Sort ⬆️</div>
+                                <div class="wire-button secondary">Filter</div>
+                            </div>
+                            <table class="wire-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date ⬇️</th>
+                                        <th>Description</th>
+                                        <th>Category</th>
+                                        <th>Amount (RWF)</th>
+                                        <th>Payment</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2025-10-09</td>
+                                        <td>Lunch at cafeteria</td>
+                                        <td>🍔 Food</td>
+                                        <td style="color: #ef4444; font-weight: 600;">-12,500</td>
+                                        <td>Cash</td>
+                                        <td>
+                                            <span class="wire-button" style="padding: 4px 8px; font-size: 10px;">✏️</span>
+                                            <span class="wire-button danger" style="padding: 4px 8px; font-size: 10px;">🗑️</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-10-07</td>
+                                        <td>Chemistry textbook</td>
+                                        <td>📚 Books</td>
+                                        <td style="color: #ef4444; font-weight: 600;">-89,900</td>
+                                        <td>Mobile Money</td>
+                                        <td>
+                                            <span class="wire-button" style="padding: 4px 8px; font-size: 10px;">✏️</span>
+                                            <span class="wire-button danger" style="padding: 4px 8px; font-size: 10px;">🗑️</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-10-05</td>
+                                        <td>Bus pass monthly</td>
+                                        <td>🚌 Transport</td>
+                                        <td style="color: #ef4444; font-weight: 600;">-45,000</td>
+                                        <td>Card</td>
+                                        <td>
+                                            <span class="wire-button" style="padding: 4px 8px; font-size: 10px;">✏️</span>
+                                            <span class="wire-button danger" style="padding: 4px 8px; font-size: 10px;">🗑️</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-10-03</td>
+                                        <td>Coffee with friends</td>
+                                        <td>🎮 Entertainment</td>
+                                        <td style="color: #ef4444; font-weight: 600;">-8,750</td>
+                                        <td>Cash</td>
+                                        <td>
+                                            <span class="wire-button" style="padding: 4px 8px; font-size: 10px;">✏️</span>
+                                            <span class="wire-button danger" style="padding: 4px 8px; font-size: 10px;">🗑️</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">💰 Balance (Desktop)</div>
+                        <div class="screen-body">
+                            <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 20px;">
+                                <div style="font-size: 12px; opacity: 0.9;">AVAILABLE BALANCE</div>
+                                <div style="font-size: 42px; font-weight: 700;">RWF 274,550</div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div class="wire-card">
+                                    <div style="font-size: 10px; color: #64748b;">USD</div>
+                                    <div style="font-size: 20px; font-weight: 700;">$228.79</div>
+                                </div>
+                                <div class="wire-card">
+                                    <div style="font-size: 10px; color: #64748b;">EUR</div>
+                                    <div style="font-size: 20px; font-weight: 700;">€211.19</div>
+                                </div>
+                            </div>
+                            <div class="wire-box" style="margin-top: 15px;">
+                                <div class="annotation">By Category</div>
+                                <div class="wire-text short"></div>
+                                <div class="wire-text medium"></div>
+                                <div class="wire-text"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">📈 History (Desktop)</div>
+                        <div class="screen-body">
+                            <div class="wire-chart" style="height: 180px;"></div>
+                            <div class="wire-box" style="margin-top: 15px;">
+                                <div class="annotation">Monthly Comparison</div>
+                                <div class="wire-text"></div>
+                                <div class="wire-text medium"></div>
+                                <div class="wire-text short"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen">
+                        <div class="screen-header">⚙️ Settings (Desktop)</div>
+                        <div class="screen-body">
+                            <div class="wire-box">
+                                <div class="annotation">Currency</div>
+                                <div class="wire-input">RWF</div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                                    <div class="wire-input">USD: 1200</div>
+                                    <div class="wire-input">EUR: 1300</div>
+                                </div>
+                            </div>
+                            <div class="wire-box">
+                                <div class="annotation">Budget Cap</div>
+                                <div class="wire-input">100000</div>
+                            </div>
+                            <div class="wire-box">
+                                <div class="wire-button">📤 Export</div>
+                                <div class="wire-button secondary">📥 Import</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchView(viewName) {
+            // Remove active class from all tabs and views
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.view-container').forEach(view => view.classList.remove('active'));
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Show corresponding view
+            document.getElementById(viewName + '-view').classList.add('active');
+        }
+    </script>
+</body>
+</html style="px 12px; border-radius: 12px; font-size: 11px;">🍔 Food</span>
+                                    <span style="background: #e0f2fe; padding: 6px;"></span>
