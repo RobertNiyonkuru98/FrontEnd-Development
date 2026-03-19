@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Robert Tony MITALI — Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #1a6b7c;
+    --teal-dark: #12505e;
+    --teal-light: #e8f4f7;
+    --accent: #e07b45;
+    --text: #1c1c1c;
+    --muted: #666;
+    --border: #d0e4e8;
+    --bg: #f5f8f9;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── TOP BAR ── */
+  #toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--teal-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 28px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  #toolbar span {
+    color: #fff;
+    font-size: 13px;
+    opacity: .75;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tb-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .tb-btn {
+    padding: 7px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .18s;
+  }
+  .tb-btn.primary { background: var(--accent); color: #fff; }
+  .tb-btn.primary:hover { background: #c96830; }
+  .tb-btn.ghost { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.25); }
+  .tb-btn.ghost:hover { background: rgba(255,255,255,.22); }
+
+  /* ── PAGE WRAPPER ── */
+  #page-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 28px 16px 60px;
+  }
+
+  /* ── RESUME CARD ── */
+  #resume {
+    background: #fff;
+    width: 794px;
+    min-height: 1123px;
+    box-shadow: 0 4px 40px rgba(0,0,0,.13);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  .r-header {
+    background: var(--teal-dark);
+    color: #fff;
+    padding: 34px 36px 28px;
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+  }
+  .r-header-text { flex: 1; }
+  .r-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    line-height: 1.1;
+    letter-spacing: -.3px;
+  }
+  .r-title {
+    color: var(--accent);
+    font-size: 12.5px;
+    font-weight: 500;
+    margin-top: 6px;
+    letter-spacing: .3px;
+  }
+  .r-summary {
+    font-size: 12.5px;
+    line-height: 1.65;
+    margin-top: 12px;
+    opacity: .88;
+    max-width: 520px;
+  }
+  .r-photo {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,.25);
+    flex-shrink: 0;
+    background: rgba(255,255,255,.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: rgba(255,255,255,.5);
+  }
+
+  /* ── CONTACT STRIP ── */
+  .r-contact {
+    background: var(--teal);
+    padding: 10px 36px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+  .r-contact a, .r-contact span {
+    color: rgba(255,255,255,.87);
+    font-size: 11.5px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .r-contact a:hover { color: #fff; text-decoration: underline; }
+  .ci { font-size: 13px; }
+
+  /* ── BODY COLUMNS ── */
+  .r-body {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+  }
+
+  /* ── MAIN (left) ── */
+  .r-main { padding: 24px 28px 28px 36px; border-right: 1px solid var(--border); }
+
+  /* ── SIDEBAR (right) ── */
+  .r-side { padding: 24px 22px 28px; background: var(--teal-light); }
+
+  /* ── SECTIONS ── */
+  .sec { margin-bottom: 22px; }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: var(--teal-dark);
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+  }
+
+  /* ── EXPERIENCE / EDU ITEMS ── */
+  .exp-item { margin-bottom: 15px; }
+  .exp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .exp-role { font-size: 13.5px; font-weight: 600; color: var(--teal-dark); }
+  .exp-date { font-size: 11px; color: var(--accent); font-weight: 500; flex-shrink: 0; font-style: italic; }
+  .exp-org { font-size: 12px; color: var(--muted); font-weight: 400; }
+  .exp-loc { font-size: 11px; color: #aaa; float: right; font-style: italic; }
+  ul.exp-list { margin-top: 6px; padding-left: 14px; }
+  ul.exp-list li {
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 3px;
+    color: #333;
+    list-style-type: disc;
+  }
+
+  /* ── SIDE SECTIONS ── */
+  .side-sec { margin-bottom: 18px; }
+  .side-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--teal-dark);
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+  }
+
+  /* ── SKILLS CHIPS ── */
+  .skill-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
+  .chip {
+    background: #fff;
+    border: 1px solid var(--border);
+    color: var(--teal-dark);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .chip.dark { background: var(--teal-dark); color: #fff; border-color: var(--teal-dark); }
+
+  /* ── LANG ── */
+  .lang-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
+  .lang-name { font-size: 12.5px; font-weight: 600; }
+  .lang-level { font-size: 11px; color: var(--accent); font-style: italic; }
+  .lang-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 3px; }
+  .lang-fill { height: 100%; background: var(--teal); border-radius: 2px; }
+
+  /* ── PROJECTS LIST ── */
+  .proj-item { font-size: 12px; padding: 4px 0; border-bottom: 1px dashed var(--border); }
+  .proj-item:last-child { border: none; }
+  .proj-name { font-weight: 600; color: var(--teal-dark); }
+  .proj-date { font-size: 10.5px; color: var(--muted); }
+
+  /* ── CERT ── */
+  .cert-item { font-size: 12px; margin-bottom: 8px; }
+  .cert-name { font-weight: 600; color: var(--teal-dark); }
+  .cert-desc { color: #555; font-style: italic; font-size: 11px; }
+
+  /* ── INTEREST CHIPS ── */
+  .int-chip {
+    display: inline-block;
+    background: var(--teal-dark);
+    color: #fff;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin: 3px 3px 0 0;
+  }
+
+  /* ── EDITABLE FIELDS ── */
+  [contenteditable] { outline: none; cursor: text; }
+  .edit-mode [contenteditable]:hover { background: rgba(26,107,124,.07); border-radius: 3px; }
+  .edit-mode [contenteditable]:focus { background: rgba(26,107,124,.1); border-radius: 3px; box-shadow: 0 0 0 1.5px var(--teal); }
+
+  /* ── EDIT MODE BADGE ── */
+  #edit-badge {
+    display: none;
+    position: fixed;
+    bottom: 22px;
+    right: 24px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0,0,0,.2);
+    z-index: 200;
+  }
+
+  /* ── PDF PRINT STYLES ── */
+  @media print {
+    #toolbar, #edit-badge { display: none !important; }
+    #page-wrap { padding: 0; }
+    #resume { box-shadow: none; border-radius: 0; width: 100%; }
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOOLBAR -->
+<div id="toolbar">
+  <span>✏️ Click "Edit Mode" to modify any field directly on the resume</span>
+  <div class="tb-btns">
+    <button class="tb-btn ghost" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
+    <button class="tb-btn primary" onclick="downloadPDF()">⬇️ Download PDF</button>
+  </div>
+</div>
+
+<div id="edit-badge">✏️ Editing — click any text to change it</div>
+
+<div id="page-wrap">
+<div id="resume">
+
+  <!-- HEADER -->
+  <div class="r-header">
+    <div class="r-header-text">
+      <div class="r-name" contenteditable="false">Robert Tony MITALI Niyonkuru</div>
+      <div class="r-title" contenteditable="false">Software Engineering Student &nbsp;|&nbsp; Front-End Developer &nbsp;|&nbsp; Building Projects & Learning Daily</div>
+      <div class="r-summary" contenteditable="false">Self-motivated Software Engineering student with hands-on experience in front-end and back-end development. Skilled in HTML, CSS, JavaScript, Python, Git, and Linux. Strong teamwork and communication skills gained through academic and personal projects. Passionate about continuous learning and using technology to solve real-world problems.</div>
+    </div>
+    <div class="r-photo">🧑🏾</div>
+  </div>
+
+  <!-- CONTACT STRIP -->
+  <div class="r-contact">
+    <span><span class="ci">✉️</span> <span contenteditable="false">tonyquano98@gmail.com</span></span>
+    <span><span class="ci">📞</span> <span contenteditable="false">+250793917259</span></span>
+    <span><span class="ci">📍</span> <span contenteditable="false">Kigali, Rwanda</span></span>
+    <span><span class="ci">🔗</span> <a href="#" contenteditable="false">linkedin.com/in/robert-tony-mitali-niyonkuru-59036030b</a></span>
+    <span><span class="ci">🐙</span> <a href="#" contenteditable="false">github.com/RobertNiyonkuru98</a></span>
+    <span><span class="ci">🐦</span> <a href="#" contenteditable="false">@quano98</a></span>
+  </div>
+
+  <!-- BODY -->
+  <div class="r-body">
+
+    <!-- MAIN COLUMN -->
+    <div class="r-main">
+
+      <!-- EXPERIENCE -->
+      <div class="sec">
+        <div class="sec-title">Professional Experience</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role" contenteditable="false">Freelance Project Developer</div>
+              <div class="exp-org" contenteditable="false">Freelance Learning <span class="exp-loc" contenteditable="false">Kigali, Rwanda</span></div>
+            </div>
+            <div class="exp-date" contenteditable="false">01/2023 – 04/2025</div>
+          </div>
+          <ul class="exp-list">
+            <li contenteditable="false">Designed and developed multiple front-end web projects to apply self-taught coding skills.</li>
+            <li contenteditable="false">Explored content editing and technology communication through CapCut video projects.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role" contenteditable="false">Software Engineering Student — ALU</div>
+              <div class="exp-org" contenteditable="false">African Leadership University · Junior Developer <span class="exp-loc" contenteditable="false">Kigali, Rwanda</span></div>
+            </div>
+            <div class="exp-date" contenteditable="false">01/2024 – 04/2025</div>
+          </div>
+          <ul class="exp-list">
+            <li contenteditable="false">Engaged in practical learning covering Python, Front-End Web Development (HTML, CSS, JS), Shell Scripting and Node.js.</li>
+            <li contenteditable="false">Currently studying Web Infrastructure and Backend Development Principles.</li>
+            <li contenteditable="false">Collaborated with peers on coding challenges, Git branching exercises and Linux-based projects.</li>
+            <li contenteditable="false">Practiced Agile Teamwork, Version Control (Git & GitHub) and peer code reviews.</li>
+            <li contenteditable="false">Built foundational knowledge of cybersecurity concepts and ethical programming.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="sec">
+        <div class="sec-title">Education</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role" contenteditable="false">Bachelor's Degree in Software Engineering</div>
+              <div class="exp-org" contenteditable="false">African Leadership University <span class="exp-loc" contenteditable="false">Kigali, Rwanda</span></div>
+            </div>
+            <div class="exp-date" contenteditable="false">01/2025 – 01/2028</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role" contenteditable="false">High School — Mathematics, Physics, Geography, CS</div>
+              <div class="exp-org" contenteditable="false">Collège Saint André <span class="exp-loc" contenteditable="false">Kigali, Rwanda</span></div>
+            </div>
+            <div class="exp-date" contenteditable="false">01/2020 – 08/2023</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSONAL PROJECTS -->
+      <div class="sec">
+        <div class="sec-title">Personal Projects</div>
+        <div class="proj-item">
+          <span class="proj-name" contenteditable="false">Team Contributor — Entrepreneurial Action Lab</span>
+          <span class="proj-date" contenteditable="false"> · 01/2025 – 04/2025</span>
+        </div>
+        <div class="proj-item">
+          <span class="proj-name" contenteditable="false">Content Editing & Captioning</span>
+          <span class="proj-date" contenteditable="false"> · 01/2025 – 04/2025</span>
+        </div>
+        <div class="proj-item">
+          <span class="proj-name" contenteditable="false">Front-End Web Projects</span>
+          <span class="proj-date" contenteditable="false"> · 01/2025 – 04/2025</span>
+        </div>
+        <div class="proj-item">
+          <span class="proj-name" contenteditable="false">Python Mini Challenges</span>
+          <span class="proj-date" contenteditable="false"> · 01/2025 – 04/2025</span>
+        </div>
+        <div class="proj-item">
+          <span class="proj-name" contenteditable="false">Git & Shell Automation Practice</span>
+          <span class="proj-date" contenteditable="false"> · 04/2022 – 04/2025</span>
+        </div>
+      </div>
+
+    </div><!-- /r-main -->
+
+    <!-- SIDEBAR -->
+    <div class="r-side">
+
+      <!-- SKILLS -->
+      <div class="side-sec">
+        <div class="side-title">Skills</div>
+        <p style="font-size:11px;color:var(--muted);margin-bottom:5px;font-weight:500;">Languages & Frameworks</p>
+        <div class="skill-chips">
+          <span class="chip" contenteditable="false">HTML</span>
+          <span class="chip" contenteditable="false">CSS</span>
+          <span class="chip" contenteditable="false">JavaScript</span>
+          <span class="chip" contenteditable="false">Node.js</span>
+          <span class="chip" contenteditable="false">Express.js</span>
+          <span class="chip" contenteditable="false">Python</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:8px 0 5px;font-weight:500;">Tools</p>
+        <div class="skill-chips">
+          <span class="chip" contenteditable="false">Git</span>
+          <span class="chip" contenteditable="false">GitHub</span>
+          <span class="chip" contenteditable="false">VS Code</span>
+          <span class="chip" contenteditable="false">Linux</span>
+          <span class="chip" contenteditable="false">Figma</span>
+          <span class="chip" contenteditable="false">PyCharm</span>
+          <span class="chip" contenteditable="false">CapCut</span>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin:8px 0 5px;font-weight:500;">Core Skills</p>
+        <div class="skill-chips">
+          <span class="chip dark" contenteditable="false">Problem Solving</span>
+          <span class="chip dark" contenteditable="false">Team Collaboration</span>
+          <span class="chip dark" contenteditable="false">Version Control</span>
+          <span class="chip dark" contenteditable="false">Agile Thinking</span>
+          <span class="chip dark" contenteditable="false">Web Infrastructure</span>
+        </div>
+      </div>
+
+      <!-- CERTIFICATES -->
+      <div class="side-sec">
+        <div class="side-title">Certificates</div>
+        <div class="cert-item">
+          <div class="cert-name" contenteditable="false">Certificate of Achievement</div>
+          <div style="font-size:11px;color:var(--muted);" contenteditable="false">07/2024 – 04/2025</div>
+          <div class="cert-desc" contenteditable="false">8-week programme in AI Augmented Professional Development Skills</div>
+        </div>
+      </div>
+
+      <!-- LANGUAGES -->
+      <div class="side-sec">
+        <div class="side-title">Languages</div>
+        <div style="margin-bottom:10px;">
+          <div class="lang-row">
+            <span class="lang-name" contenteditable="false">English</span>
+            <span class="lang-level" contenteditable="false">Full Professional</span>
+          </div>
+          <div class="lang-bar"><div class="lang-fill" style="width:90%"></div></div>
+        </div>
+        <div>
+          <div class="lang-row">
+            <span class="lang-name" contenteditable="false">French</span>
+            <span class="lang-level" contenteditable="false">Limited Working</span>
+          </div>
+          <div class="lang-bar"><div class="lang-fill" style="width:40%"></div></div>
+        </div>
+      </div>
+
+      <!-- INTERESTS -->
+      <div class="side-sec">
+        <div class="side-title">Interests</div>
+        <span class="int-chip" contenteditable="false">Cybersecurity & Ethical Hacking</span>
+        <span class="int-chip" contenteditable="false">Web Development</span>
+        <span class="int-chip" contenteditable="false">Cloud Computing</span>
+        <span class="int-chip" contenteditable="false">UI/UX Design</span>
+      </div>
+
+    </div><!-- /r-side -->
+  </div><!-- /r-body -->
+
+</div><!-- /resume -->
+</div><!-- /page-wrap -->
+
+<script>
+  let editMode = false;
+
+  function toggleEdit() {
+    editMode = !editMode;
+    const resume = document.getElementById('resume');
+    const btn = document.getElementById('edit-btn');
+    const badge = document.getElementById('edit-badge');
+    const fields = resume.querySelectorAll('[contenteditable]');
+
+    if (editMode) {
+      resume.classList.add('edit-mode');
+      fields.forEach(f => f.setAttribute('contenteditable', 'true'));
+      btn.textContent = '✅ Done Editing';
+      btn.classList.remove('ghost');
+      btn.classList.add('primary');
+      badge.style.display = 'block';
+    } else {
+      resume.classList.remove('edit-mode');
+      fields.forEach(f => f.setAttribute('contenteditable', 'false'));
+      btn.textContent = '✏️ Edit Mode';
+      btn.classList.add('ghost');
+      btn.classList.remove('primary');
+      badge.style.display = 'none';
+    }
+  }
+
+  function downloadPDF() {
+    // Turn off edit mode before exporting
+    if (editMode) toggleEdit();
+
+    const element = document.getElementById('resume');
+    const opt = {
+      margin: 0,
+      filename: 'Robert_Tony_MITALI_Resume.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+  }
+</script>
+</body>
+</html>
