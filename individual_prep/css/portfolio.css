@@ -1,14 +1,14 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --teal: #1a6b7c;
-    --teal-dark: #12505e;
-    --teal-light: #e8f4f7;
-    --accent: #e07b45;
-    --text: #1c1c1c;
-    --muted: #666;
-    --border: #d0e4e8;
-    --bg: #f5f8f9;
+    --teal: #18181b; /* Matte Black for Contact Strip */
+    --teal-dark: #09090b; /* Deep Obsidian for Header */
+    --teal-light: #f8fafc; /* Clean Slate for Sidebar */
+    --accent: #e11d48; /* Crimson/Rose for Accents */
+    --text: #27272a; /* Dark Zinc for primary text */
+    --muted: #71717a; /* Muted Zinc for secondary text */
+    --border: #e4e4e7; /* Light Zinc for borders */
+    --bg: #3f3f46; /* Page background */
   }
 
   body {
@@ -64,10 +64,8 @@
   #resume {
     background: #fff;
     width: 794px;
-    min-height: 1123px;
     box-shadow: 0 4px 40px rgba(0,0,0,.13);
     border-radius: 4px;
-    overflow: hidden;
   }
 
   /* ── HEADER ── */
@@ -101,19 +99,22 @@
     max-width: 520px;
   }
   .r-photo {
-    width: 92px;
-    height: 92px;
+    margin-top: 10px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    object-fit: cover;
     border: 3px solid rgba(255,255,255,.25);
     flex-shrink: 0;
-    background: rgba(255,255,255,.1);
+    background-color: rgba(255,255,255,.1);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-    color: rgba(255,255,255,.5);
   }
+
+
 
   /* ── CONTACT STRIP ── */
   .r-contact {

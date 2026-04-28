@@ -29,12 +29,28 @@
     if (editMode) toggleEdit();
 
     const element = document.getElementById('resume');
+    
+    // 1 CSS pixel is equal to 0.264583 millimeters
+    const pxToMm = 0.264583;
+    
+    // Define the white space margin around the resume in mm
+    const margin = 10;
+    
+    // Calculate the exact PDF page dimensions needed
+    const pdfWidth = (element.offsetWidth * pxToMm) + (margin * 2);
+    const pdfHeight = (element.offsetHeight * pxToMm) + (margin * 2);
+
     const opt = {
-      margin: 0,
+      margin: margin,
       filename: 'Robert_Tony_MITALI_Resume.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' }
+      image: { type: 'jpeg', quality: 1.0 },
+      html2canvas: { 
+        scale: 2, 
+        useCORS: true,
+        scrollY: 0, // Prevents vertical shift
+        letterRendering: true
+      },
+      jsPDF: { unit: 'mm', format: [pdfWidth, pdfHeight], orientation: 'portrait' }
     };
     html2pdf().set(opt).from(element).save();
   }
