@@ -40,9 +40,12 @@
     const pdfWidth = (element.offsetWidth * pxToMm) + (margin * 2);
     const pdfHeight = (element.offsetHeight * pxToMm) + (margin * 2);
 
+    // Determine filename dynamically or fallback to resume
+    const pdfFilename = element.getAttribute('data-pdf-name') || 'Robert_Tony_MITALI_Resume.pdf';
+
     const opt = {
       margin: margin,
-      filename: 'Robert_Tony_MITALI_Resume.pdf',
+      filename: pdfFilename,
       image: { type: 'jpeg', quality: 1.0 },
       html2canvas: { 
         scale: 2, 

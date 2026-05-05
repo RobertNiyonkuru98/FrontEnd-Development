@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Robert Tony Niyonkuru MITALI — Cover Letter</title>
+<link rel="stylesheet" href="../css/portfolio.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+  /* Specific styling overrides for Cover Letter */
+  .cl-content {
+    padding: 10px 16px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .cl-content p {
+    margin-bottom: 16px;
+    text-align: justify;
+  }
+  .cl-header-info {
+    margin-bottom: 30px;
+  }
+  .cl-date {
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .cl-signoff {
+    margin-top: 40px;
+  }
+  .cl-signature {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 5px;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOOLBAR -->
+<div id="toolbar">
+  <span>✏️ Click "Edit Mode" to modify any field directly on the cover letter</span>
+  <div class="tb-btns">
+    <button class="tb-btn ghost" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
+    <button class="tb-btn primary" onclick="downloadPDF()">⬇️ Download PDF</button>
+  </div>
+</div>
+
+<div id="edit-badge">✏️ Editing — click any text to change it</div>
+
+<div id="page-wrap">
+<div id="resume" data-pdf-name="Robert_Tony_MITALI_Cover_Letter.pdf">
+
+  <!-- HEADER -->
+  <div class="r-header">
+    <div class="r-header-text">
+      <div class="r-name" contenteditable="false">Robert Tony MITALI Niyonkuru</div>
+      <div class="r-title" contenteditable="false">Software Engineering Student &nbsp;|&nbsp; Full Stack Developer</div>
+      <div class="r-summary" contenteditable="false">Passionate about solving real-world problems through technology, continuous learning, and building impactful digital systems.</div>
+    </div>
+    <div class="r-photo" style="background-image: url('../images/Tony.png');"></div>
+  </div>
+
+  <!-- CONTACT STRIP -->
+  <div class="r-contact">
+    <span><span class="ci"><i class="fa-solid fa-envelope"></i></span> <span contenteditable="false">tonyquano98@gmail.com</span></span>
+    <span><span class="ci"><i class="fa-solid fa-phone"></i></span> <span contenteditable="false">+250793917259</span></span>
+    <span><span class="ci"><i class="fa-solid fa-location-dot"></i></span> <span contenteditable="false">Kigali, Rwanda</span></span>
+    <span><span class="ci"><i class="fa-brands fa-linkedin"></i></span> <a href="#" contenteditable="false">linkedin.com/in/robert-tony-mitali-niyonkuru-59036030b</a></span>
+  </div>
+
+  <!-- BODY (COVER LETTER) -->
+  <div class="r-body" style="grid-template-columns: 1fr;"> <!-- Override grid to be single column -->
+    <div class="r-main" style="border-right: none;">
+        <div class="cl-content">
+            <div class="cl-date" contenteditable="false" id="cl-date-display">[Today's Date]</div>
+            
+            <div class="cl-header-info">
+                <div contenteditable="false" style="font-weight: 600; color: var(--teal-dark);">[Hiring Manager Name]</div>
+                <div contenteditable="false">[Hiring Manager Title]</div>
+                <div contenteditable="false">[Company Name]</div>
+                <div contenteditable="false">[Company Address]</div>
+            </div>
+
+            <p contenteditable="false" style="font-weight: 500; color: var(--teal-dark);">Dear <span contenteditable="false">[Hiring Manager Name]</span>,</p>
+
+            <div id="cl-body" contenteditable="false">
+                <p>[Paste your cover letter paragraph 1 here. Click "Edit Mode" first to start pasting.]</p>
+                <p>[Paste your cover letter paragraph 2 here. You can add as many paragraphs as you need by pressing Enter.]</p>
+                <p>[Paste your cover letter paragraph 3 here. The document will automatically expand to fit your content, and the PDF will perfectly wrap around it.]</p>
+            </div>
+
+            <div class="cl-signoff">
+                <p contenteditable="false" style="margin-bottom: 0;">Sincerely,</p>
+                <div class="cl-signature" contenteditable="false">Robert Tony MITALI Niyonkuru</div>
+            </div>
+        </div>
+    </div>
+  </div><!-- /r-body -->
+
+</div><!-- /resume -->
+</div><!-- /page-wrap -->
+<script src="../js/portfolio.js"></script>
+<script>
+    // Set today's date automatically when the page loads
+    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('cl-date-display').innerText = new Date().toLocaleDateString('en-US', dateOptions);
+</script>
+</body>
+</html>
